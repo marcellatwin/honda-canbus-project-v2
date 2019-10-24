@@ -3,7 +3,7 @@
  * By Jonathan Crossley
  * Version 0.1 - 24 Oct 2019
  *
- * jc_class_converted_CAN_data.h
+ * jc_CAN_socket.h
  * Header file for connecting to socket
  */
 
@@ -24,15 +24,15 @@
 
 class CAN_socket
 {
-public:
-	CAN_socket();
-	bool socket_error();
-	struct can_frame read_frame();
 private:
 	bool error = false;
 	int s;
 	struct socketaddr_can addr;
 	struct ifreq ifr;
+public:
+	CAN_socket();
+	bool socket_error();
+	void read_frame(struct &can_frame);
 };
 
 #endif

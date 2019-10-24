@@ -3,19 +3,20 @@
  * By Jonathan Crossley
  * Version 0.1 - 24 Oct 2019
  *
- * jc_.cpp
+ * jc_CAN_socket.cpp
  * Header file for connecting to socket
  */
 
-
 #include "CAN_socket.h"
+
+using namespace std
 
 CAN_socket::CAN_socket()
 {
 	this->s = socket(PF_CAN, SOCK_RAW, CAN_RAW);
 	if (this->s == -1)
 	{
-		std::cout << "Error creating endpoint for socket communication";
+		cout << "Error creating endpoint for socket communication";
 		this->error = true;
 	}
 	else
@@ -37,8 +38,8 @@ CAN_socket::CAN_socket()
 
 			if (bind(this->s, (struct sockaddr*) this->addr, sizeof(this->addr)) == -1)
 			{
-				this->error = true;
 				cout << "Error with binding socket address";
+				this->error = true;
 			}
 		}
 	}
@@ -49,13 +50,15 @@ bool CAN_socket::socket_error()
 	return this->error;
 }
 
-struct can_frame CAN_socket::read_frame()
+void CAN_socket::read_frame(struct can_frame &frame)
 {
-	struct can_frame frame;
-	if (read(this->s, &frame, sizeof(struct can_frame)) < 0) {
+	//struct can_frame frame;
+	if (read(this->s, frame, sizeof(struct can_frame)) < 0)
+	{
 		this->error = true;
-		std::cout << "Error reading CAN bus address";
+		cout << "Error reading CAN bus address";
 	}
-	std::cout << "GOT A FRAME!" << std::endl;
+	
+	cout << "GOT A FRAME!" << endl;
 	return frame;
 }
