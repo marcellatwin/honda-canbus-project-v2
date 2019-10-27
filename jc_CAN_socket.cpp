@@ -7,9 +7,9 @@
  * Header file for connecting to socket
  */
 
-#include "CAN_socket.h"
+#include "jc_CAN_socket.h"
 
-using namespace std
+using namespace std;
 
 CAN_socket::CAN_socket()
 {
@@ -50,7 +50,7 @@ bool CAN_socket::socket_error()
 	return this->error;
 }
 
-void CAN_socket::read_frame(struct can_frame &frame)
+struct can_frame CAN_socket::read_frame(struct can_frame &frame)
 {
 	//struct can_frame frame;
 	if (read(this->s, frame, sizeof(struct can_frame)) < 0)

@@ -7,8 +7,8 @@
  * Header file for connecting to socket
  */
 
-#ifndef CAN_SOCKET_H
-#define CAN_SOCKET_H
+#ifndef JC_CAN_SOCKET_H
+#define JC_CAN_SOCKET_H
 
 //Common Libs
 #include <iostream>
@@ -17,6 +17,9 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
+
+// ????
+#include <net/if.h>
 
 // Libraries for linux-can-utils
 #include <linux/can.h>
@@ -27,12 +30,12 @@ class CAN_socket
 private:
 	bool error = false;
 	int s;
-	struct socketaddr_can addr;
+	struct sockaddr_can addr;
 	struct ifreq ifr;
 public:
 	CAN_socket();
 	bool socket_error();
-	void read_frame(struct &can_frame);
+	struct can_frame read_frame(struct can_frame &);
 };
 
 #endif
