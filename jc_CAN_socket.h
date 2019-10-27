@@ -28,7 +28,7 @@
 class CAN_socket
 {
 private:
-	bool error = false;
+	bool sock_error = false;
 	int s;
 	struct sockaddr_can addr;
 	struct ifreq ifr;
