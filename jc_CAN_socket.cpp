@@ -21,7 +21,8 @@ CAN_socket::CAN_socket()
 	}
 	else
 	{
-		ifr.ifr_name = "can0";
+		//ifr.ifr_name = "can0";
+		strcpy(ifr.ifr_name, "can0");
 		addr.can_family = AF_CAN;
 
 		// Do something with control device
