@@ -18,6 +18,7 @@ CAN_socket::CAN_socket()
 	if (s == -1)
 	{
 		cout << "Error creating endpoint for socket communication";
+		perror("socket");
 		sock_error = true;
 	}
 	else
@@ -29,6 +30,7 @@ CAN_socket::CAN_socket()
 		if (ioctl(s, SIOCGIFINDEX, &ifr) == -1)
 		{
 			cout << "Error with control device (SIOCGIFINDEX)";
+			perror("SIOCGIFINDEX");
 			sock_error = true;
 			close(s);
 		}
@@ -43,11 +45,13 @@ CAN_socket::CAN_socket()
 			//fcntl(s, F_SETFL, O_NONBLOCK);
 
 			// Bind the socket and address
-			int x = bind(s, (struct sockaddr*) &addr, sizeof(addr));
+			//int x = bind(s, (struct sockaddr*) &addr, sizeof(addr));
+			int x = connect(s, (struct sockaddr*) &addr, sizeof(addr));
 			//if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
-			cout << "Binding value:  " << x << endl;
+			cout << "Binding/connecting value:  " << x << endl;
 			if (x < 0)
 			{
+				perror("connect");
 				cout << "Error with binding socket address";
 				sock_error = true;
 				close(s);

@@ -20,12 +20,17 @@ int main(void)
 	CAN_socket sock;
 	struct can_frame frame;
 
-	for (int i = 0; i < 10; i++)
+	if (!sock_error)
 	{
-		// Get a frame to test
-		frame = sock.read_frame(frame);
+		for (int i = 0; i < 10; i++)
+		{
+			// Get a frame to test
+			frame = sock.read_frame(frame);
 
-		// Display
-		cout << "ID: " << frame.can_id << "  Data: " << frame.data << endl;
+			// Display
+			cout << "ID: " << frame.can_id << "  Data: " << frame.data << endl;
+		}
 	}
+	else
+		cout << "Socket not set up, ending program" << endl;
 }
