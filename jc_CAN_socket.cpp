@@ -13,6 +13,7 @@ using namespace std;
 
 CAN_socket::CAN_socket()
 {
+	// Set the file descriptor for the socket
 	s = socket(PF_CAN, SOCK_RAW, CAN_RAW);
 	if (s == -1)
 	{
@@ -21,11 +22,10 @@ CAN_socket::CAN_socket()
 	}
 	else
 	{
-		//ifr.ifr_name = "can0";
+		// Set the name of the socket/CAN interface
 		strcpy(ifr.ifr_name, "can0");
-		addr.can_family = AF_CAN;
 
-		// Do something with control device
+		// Find the address of the socket
 		if (ioctl(s, SIOCGIFINDEX, &ifr) == -1)
 		{
 			cout << "Error with control device (SIOCGIFINDEX)";
@@ -34,13 +34,19 @@ CAN_socket::CAN_socket()
 		}
 		else
 		{
-			// Do some more with structs and something with the CPU socket
+			// Set the address of the socket
+			addr.can_family = AF_CAN;
 			addr.can_ifindex = ifr.ifr_ifindex;
+			
+			// Set the options of the socket
 			//setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, NULL, 0);
-			fcntl(s, F_SETFL, O_NONBLOCK);
+			//fcntl(s, F_SETFL, O_NONBLOCK);
 
-			//if (bind(s, (struct sockaddr*) addr, sizeof(addr)) == -1)
-			if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
+			// Bind the socket and address
+			int x = bind(s, (struct sockaddr*) &addr, sizeof(addr));
+			//if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
+			cout << "Binding value:  " << x << endl;
+			if (x < 0)
 			{
 				cout << "Error with binding socket address";
 				sock_error = true;
