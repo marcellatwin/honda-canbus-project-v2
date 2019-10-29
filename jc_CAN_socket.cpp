@@ -37,10 +37,11 @@ CAN_socket::CAN_socket()
 			addr.can_ifindex = ifr.ifr_ifindex;
 			setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, NULL, 0);
 
-			if (bind(s, (struct sockaddr*) addr, sizeof(addr)) == -1)
+			//if (bind(s, (struct sockaddr*) addr, sizeof(addr)) == -1)
+			if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
 			{
 				cout << "Error with binding socket address";
-				error = true;
+				sock_error = true;
 			}
 		}
 	}
@@ -54,7 +55,8 @@ bool CAN_socket::socket_error()
 struct can_frame CAN_socket::read_frame(struct can_frame &frame)
 {
 	//struct can_frame frame;
-	if (read(s, frame, sizeof(struct can_frame)) < 0)
+	if (read(s, &frame, sizeof(struct can_frame)) < 0)
+	//if (read(s, frame, sizeof(struct can_frame)) < 0)
 	{
 		sock_error = true;
 		cout << "Error reading CAN bus address";
