@@ -16,9 +16,12 @@ using namespace std;
 
 int main(void)
 {
+	cout << "Test" << endl;
 	// Set up socket and CAN frame
 	CAN_socket sock;
+	cout << "Test2" << endl;
 	struct can_frame frame;
+	cout << "Test3" << endl;
 
 	for (int i = 0; i < 10; i++)
 	{
