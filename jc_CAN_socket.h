@@ -21,6 +21,8 @@
 
 #include <unistd.h>
 
+#include <fcntl.h>
+
 // ????
 #include <net/if.h>
 
