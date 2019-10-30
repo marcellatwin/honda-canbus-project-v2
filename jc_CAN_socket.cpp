@@ -48,7 +48,7 @@ CAN_socket::CAN_socket()
 			int x = bind(s, (struct sockaddr*) &addr, sizeof(addr));
 			//int x = connect(s, (struct sockaddr*) &addr, sizeof(addr));
 			//if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
-			cout << "Binding/connecting value:  " << x << endl;
+			//cout << "Binding/connecting value:  " << x << endl;
 			if (x < 0)
 			{
 				perror("connect");
@@ -85,6 +85,6 @@ struct can_frame CAN_socket::read_frame(struct can_frame &frame)
 		close(s);
 	}
 	
-	cout << "GOT A FRAME!" << endl;
+	//cout << "GOT A FRAME!" << endl;
 	return frame;
 }

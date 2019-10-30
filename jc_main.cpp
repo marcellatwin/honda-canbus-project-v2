@@ -20,15 +20,24 @@ int main(void)
 	CAN_socket sock;
 	struct can_frame frame;
 
+	int count = 0;
+
 	if (!sock.socket_error())
 	{
-		for (int i = 0; i < 20; i++)
+		//for (int i = 0; i < 20; i++)
+		while (count < 20)
 		{
 			// Get a frame to test
 			frame = sock.read_frame(frame);
 
-			// Display
-			cout << "ID: " << frame.can_id << "  Data: " << frame.data[0] << endl;
+			if (frame.can_id == 0x17c)
+			{
+				float throttle = ((frame.data[0] << 8) + (frame.data[1])) / 654;
+				// Display
+				cout << "ID: " << hex << frame.can_id << "  Data: " << throttle << endl;
+
+				count++;
+			}
 		}
 	}
 	else
