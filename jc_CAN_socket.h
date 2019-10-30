@@ -39,6 +39,7 @@ private:
 	struct ifreq ifr;
 public:
 	CAN_socket();
+	~CAN_socket();
 	bool socket_error();
 	struct can_frame read_frame(struct can_frame &);
 };

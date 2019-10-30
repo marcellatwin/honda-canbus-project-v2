@@ -22,13 +22,13 @@ int main(void)
 
 	if (!sock.socket_error())
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			// Get a frame to test
 			frame = sock.read_frame(frame);
 
 			// Display
-			cout << "ID: " << frame.can_id << "  Data: " << frame.data << endl;
+			cout << "ID: " << frame.can_id << "  Data: " << frame.data[0] << endl;
 		}
 	}
 	else

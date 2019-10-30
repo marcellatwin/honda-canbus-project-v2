@@ -60,6 +60,12 @@ CAN_socket::CAN_socket()
 	}
 }
 
+CAN_socket::~CAN_socket()
+{
+	close(s);
+	cout << endl << "Destructor, closing s, ending!" << endl;
+}
+
 bool CAN_socket::socket_error()
 {
 	return sock_error;
@@ -69,7 +75,7 @@ struct can_frame CAN_socket::read_frame(struct can_frame &frame)
 {
 	
 	int x = read(s, &frame, sizeof(struct can_frame));
-	cout << x << endl;
+	//cout << x << endl;
 	if (x < 0)
 	//if (read(s, &frame, sizeof(frame)) < 0)
 	//if (read(s, frame, sizeof(struct can_frame)) < 0)
