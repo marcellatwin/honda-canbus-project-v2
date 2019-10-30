@@ -20,11 +20,11 @@
 #include <sys/ioctl.h>
 
 #include <unistd.h>
+#include <net/if.h>
 
 #include <fcntl.h>
 
-// ????
-#include <net/if.h>
+
 
 // Libraries for linux-can-utils
 #include <linux/can.h>

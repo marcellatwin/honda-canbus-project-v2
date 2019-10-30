@@ -20,7 +20,7 @@ int main(void)
 	CAN_socket sock;
 	struct can_frame frame;
 
-	if (!sock_error)
+	if (!sock.socket_error())
 	{
 		for (int i = 0; i < 10; i++)
 		{

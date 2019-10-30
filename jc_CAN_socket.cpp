@@ -45,8 +45,8 @@ CAN_socket::CAN_socket()
 			//fcntl(s, F_SETFL, O_NONBLOCK);
 
 			// Bind the socket and address
-			//int x = bind(s, (struct sockaddr*) &addr, sizeof(addr));
-			int x = connect(s, (struct sockaddr*) &addr, sizeof(addr));
+			int x = bind(s, (struct sockaddr*) &addr, sizeof(addr));
+			//int x = connect(s, (struct sockaddr*) &addr, sizeof(addr));
 			//if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
 			cout << "Binding/connecting value:  " << x << endl;
 			if (x < 0)
