@@ -13,6 +13,9 @@
 // Parent class library
 #include "jc_converted_CAN_data.h"
 
+// Children class libraries
+#include "jc_throttle_data.h"
+
 // Standard libraries
 #include <iostream>
 
