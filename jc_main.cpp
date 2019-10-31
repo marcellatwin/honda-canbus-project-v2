@@ -7,8 +7,11 @@
  * Main file for running CAN bus program
  */
 
-// Socket class object library
+// Socket class library
 #include "jc_CAN_socket.h"
+
+// Parent class library
+#include "jc_converted_CAN_data.h"
 
 // Standard libraries
 #include <iostream>
