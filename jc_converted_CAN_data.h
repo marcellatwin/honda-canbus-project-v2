@@ -12,8 +12,6 @@
 
 class Converted_CAN_Data
 {
-private:
-    __u8 frame_id;
 public:
     virtual void convert_frame(struct can_frame &) = 0;
 };
