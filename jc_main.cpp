@@ -7,6 +7,9 @@
  * Main file for running CAN bus program
  */
 
+// Standard libraries
+#include <iostream>
+
 // Socket class library
 #include "jc_CAN_socket.h"
 
@@ -16,8 +19,8 @@
 // Children class libraries
 #include "jc_throttle_data.h"
 
-// Standard libraries
-#include <iostream>
+// Supporting header file
+#include "jc_text_printing.h"
 
 using namespace std;
 
