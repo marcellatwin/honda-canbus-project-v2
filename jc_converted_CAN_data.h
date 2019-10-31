@@ -24,7 +24,7 @@ private:
                     // gear_calc is just a function, Trans object still gets pedal and reverse message
     bool reprint_var;
 public:
-    virtual void convert_message(string message_data) = 0;
+    virtual void convert_message(struct can_frame &) = 0;
 };
 
 #endif
