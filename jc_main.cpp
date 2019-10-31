@@ -1,9 +1,10 @@
 /*****************************************************************************/
 /* 
- * jc_main.cpp
  * By Jonathan Crossley
  * Version 0.1 - 24 Oct 2019
- *         
+ * 
+ * jc_main.cpp
+ * Main file for running CAN bus program
  */
 
 // Socket class object library
@@ -20,15 +21,19 @@ int main(void)
 	CAN_socket sock;
 	struct can_frame frame;
 
+	// For testing
 	int count = 0;
 
 	if (!sock.socket_error())
 	{
-		//for (int i = 0; i < 20; i++)
 		while (count < 20)
 		{
 			// Get a frame to test
 			frame = sock.read_frame(frame);
+
+			// Break out if there's an error with reading the CAN bus
+			if(sock.socket_error())
+				break;
 
 			if (frame.can_id == 0x17c)
 			{
@@ -41,5 +46,5 @@ int main(void)
 		}
 	}
 	else
-		cout << "Socket not set up, ending program" << endl;
+		cout << "Socket not set up correctly." << endl;
 }

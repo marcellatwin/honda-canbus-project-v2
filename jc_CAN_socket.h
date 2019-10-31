@@ -4,13 +4,13 @@
  * Version 0.1 - 24 Oct 2019
  *
  * jc_CAN_socket.h
- * Header file for connecting to socket
+ * Header file for connecting to socket and all associated libraries
  */
 
 #ifndef JC_CAN_SOCKET_H
 #define JC_CAN_SOCKET_H
 
-//Common Libs
+// Common libraries
 #include <iostream>
 #include <cstring>
 
@@ -18,13 +18,10 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
-
-#include <unistd.h>
 #include <net/if.h>
+#include <unistd.h>
 
-#include <fcntl.h>
-
-
+//#include <fcntl.h>
 
 // Libraries for linux-can-utils
 #include <linux/can.h>

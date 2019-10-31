@@ -4,21 +4,22 @@
  * Version 0.1 - 24 Oct 2019
  *
  * jc_CAN_socket.cpp
- * Header file for connecting to socket
+ * Cpp file for connecting to socket
  */
 
+// Corresponding header file
 #include "jc_CAN_socket.h"
 
 using namespace std;
 
+// Constructor that sets up the socket
 CAN_socket::CAN_socket()
 {
 	// Set the file descriptor for the socket
 	s = socket(PF_CAN, SOCK_RAW, CAN_RAW);
 	if (s == -1)
 	{
-		cout << "Error creating endpoint for socket communication";
-		perror("socket");
+		perror("Error with setting up socket file descriptor: ");
 		sock_error = true;
 	}
 	else
@@ -29,10 +30,8 @@ CAN_socket::CAN_socket()
 		// Find the address of the socket
 		if (ioctl(s, SIOCGIFINDEX, &ifr) == -1)
 		{
-			cout << "Error with control device (SIOCGIFINDEX)";
-			perror("SIOCGIFINDEX");
+			perror("Error with control device (SIOCGIFINDEX): ");
 			sock_error = true;
-			close(s);
 		}
 		else
 		{
@@ -45,46 +44,36 @@ CAN_socket::CAN_socket()
 			//fcntl(s, F_SETFL, O_NONBLOCK);
 
 			// Bind the socket and address
-			int x = bind(s, (struct sockaddr*) &addr, sizeof(addr));
-			//int x = connect(s, (struct sockaddr*) &addr, sizeof(addr));
-			//if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
-			//cout << "Binding/connecting value:  " << x << endl;
-			if (x < 0)
+			if (bind(s, (struct sockaddr*) &addr, sizeof(addr)) < 0)
 			{
-				perror("connect");
-				cout << "Error with binding socket address";
+				perror("Error with binding socket address: ");
 				sock_error = true;
-				close(s);
 			}
 		}
 	}
 }
 
+// Destructor that will close the file descriptor for the socket
 CAN_socket::~CAN_socket()
 {
 	close(s);
-	cout << endl << "Destructor, closing s, ending!" << endl;
+	cout << endl << "Destructor, closing s, ending program!" << endl;
 }
 
+// Returns the state of the error variable
 bool CAN_socket::socket_error()
 {
 	return sock_error;
 }
 
+// Reads the CAN bus and places it in a can_frame struct
 struct can_frame CAN_socket::read_frame(struct can_frame &frame)
 {
-	
-	int x = read(s, &frame, sizeof(struct can_frame));
-	//cout << x << endl;
-	if (x < 0)
-	//if (read(s, &frame, sizeof(frame)) < 0)
-	//if (read(s, frame, sizeof(struct can_frame)) < 0)
+	if (read(s, &frame, sizeof(struct can_frame)) < 0)
 	{
 		sock_error = true;
-		cout << "Error reading CAN bus address" << endl;
-		close(s);
+		cout << "Error reading CAN bus" << endl;
 	}
 	
-	//cout << "GOT A FRAME!" << endl;
 	return frame;
 }
