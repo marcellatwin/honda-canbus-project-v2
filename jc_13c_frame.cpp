@@ -41,7 +41,7 @@ void CAN_frame_13c::convert_frame(struct can_frame & frame)
 	throttle_plate = (frame.data[0] << 8) + (frame.data[1]);
 	throttle_command = (frame.data[2] << 8) + (frame.data[3]);
 
-	// VERIFY THIS DECODE
+	// VERIFY THIS DECODE ////////////////////////////////////////////
 	load_command = frame.data[4] / 2.56;
 
 }
@@ -49,4 +49,13 @@ void CAN_frame_13c::convert_frame(struct can_frame & frame)
 __u8 CAN_frame_13c::get_class_id(void)
 {
 	return frame_id;
+}
+
+// For TESTING /////////////////////////////////////////////
+void print_test(void)
+{
+	mvprintw(1, 1, "Throttle Comm: %.1f", throttle_command);
+	mvprintw(2, 1, "Throttle plate: %.1f", throttle_plate);
+	mvprintw(3, 1, "Load Comm: %.1f", load_command);
+	mvprintw(4, 1, "Clutch: %s", clutch_status ? "In" : "Out");
 }

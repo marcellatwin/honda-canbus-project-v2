@@ -24,6 +24,8 @@ public:
 	CAN_frame_13c();
 	__u8 get_class_id(void);
     void convert_frame(struct can_frame &);
+
+    void print_test(void);
 };
 
 #endif
