@@ -13,13 +13,14 @@
 // Socket class library
 #include "jc_CAN_socket.h"
 
-// Parent class library
+// Parent class library for converting CAN data
 #include "jc_converted_CAN_data.h"
 
-// Children class libraries
-#include "jc_throttle_data.h"
+// Children class libraries for CAN frames
+#include "jc_13c_frame.h"
+#include "jc_17c_frame.h"
 
-// Supporting header file
+// Supporting header file for printing
 #include "jc_text_printing.h"
 
 using namespace std;
@@ -30,12 +31,19 @@ int main(void)
 	CAN_socket sock;
 	struct can_frame frame;
 
-	// For testing
-	int count = 0;
+	// Set up CAN message classes
+	CAN_frame_13c frame_13c;
+	CAN_frame_17c frame_17c;
+
+	// For testing ///////////////////////////////////////
+	bool quit_var = false;
 
 	if (!sock.socket_error())
 	{
-		while (count < 20)
+		// Start up ncurses window
+		start_text_dash();
+
+		while (!quit_var)
 		{
 			// Get a frame to test
 			frame = sock.read_frame(frame);
@@ -44,15 +52,31 @@ int main(void)
 			if(sock.socket_error())
 				break;
 
-			if (frame.can_id == 0x17c)
+			// Switch case for each decoded frame 
+			switch (frame.can_id)
 			{
-				float throttle = ((frame.data[0] << 8) + (frame.data[1])) / 654;
-				// Display
-				cout << "ID: " << hex << frame.can_id << "  Data: " << throttle << endl;
-
-				count++;
+				case (frame_13c.get_class_id())
+					frame_13c.convert_frame(frame);
+					break;
+				case (frame_17c.get_class_id())
+					frame_17c.convert_frame(frame);
+					break;
 			}
+
+			// For testing ////////////////////////
+			frame_13c.print_test();
+			frame_17c.print_test();
+
+
+			// For testing /////////////////////////////////////////
+			// Determind wheather to keep running or not
+			if (getch() == 'q')
+				quit_var = true;
+
 		}
+
+		// Shut down ncurses window
+		end_text_dash();
 	}
 	else
 		cout << "Socket not set up correctly." << endl;
