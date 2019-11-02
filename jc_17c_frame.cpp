@@ -29,23 +29,20 @@ CAN_frame_17c::CAN_frame_17c()
 
 void CAN_frame_17c::convert_frame(struct can_frame & frame)
 {
-	// This may change, if 3, 2, or 1 is discovered, consider change
-	// for safety critical if needed
 
+	throttle_pedal = ((frame.data[0] << 8) + (frame.data[1])) / 654;
 
-	if (frame->data[4] == 0x48)
+	if (frame.data[4] == 0x48)
 		cruise_cont_active_flag = true;
 	else
 		cruise_cont_active_flag = false;
 
 
-	if (frame->data[6] == 0x20)
+	if (frame.data[6] == 0x20)
 		brake_status = true;
 	else
 		brake_status = false;
 
-
-	throttle_pedal = ((frame.data[0] << 8) + (frame.data[1])) / 654;
 
 }
 
