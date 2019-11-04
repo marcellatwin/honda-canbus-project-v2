@@ -30,8 +30,10 @@ CAN_frame_17c::CAN_frame_17c()
 void CAN_frame_17c::convert_frame(struct can_frame & frame)
 {
 
-	throttle_pedal = ((frame.data[0] << 8) + (frame.data[1])) / 654;
-
+	// Try different scaling ??????????????????????????????????????????
+	//throttle_pedal = ((frame.data[0] << 8) + (frame.data[1])) / 654;
+	throttle_pedal = ((frame.data[0] << 8) + (frame.data[1])) / 655.35;
+	
 	if (frame.data[4] == 0x48)
 		cruise_cont_active_flag = true;
 	else
@@ -54,10 +56,10 @@ canid_t CAN_frame_17c::get_class_id(void)
 // For TESTING /////////////////////////////////////////////
 void CAN_frame_17c::print_test(void)
 {
-	mvprintw(6, 1, "Throttle pedal: %.1f", throttle_pedal);
+	mvprintw(6, TITLE_COLM, "Throttle pedal: %.1f", throttle_pedal);
 	clrtoeol();
-	mvprintw(7, 1, "Cruise Control Active: %s", cruise_cont_active_flag ? "Active" : "Inactive");
+	mvprintw(7, TITLE_COLM, "Cruise Control Active: %s", cruise_cont_active_flag ? "Active" : "Inactive");
 	clrtoeol();
-	mvprintw(8, 1, "Clutch: %s", brake_status ? "On" : "Off");
+	mvprintw(8, TITLE_COLM, "Brake: %s", brake_status ? "On" : "Off");
 	clrtoeol();
 }
