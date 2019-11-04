@@ -52,6 +52,7 @@ canid_t CAN_frame_13c::get_class_id(void)
 }
 
 // For TESTING /////////////////////////////////////////////
+/*
 void CAN_frame_13c::print_test(void)
 {
 	mvprintw(1, TITLE_COLM, "Throttle Comm: %.1f", throttle_command);
@@ -63,3 +64,4 @@ void CAN_frame_13c::print_test(void)
 	mvprintw(4, TITLE_COLM, "Clutch: %s", clutch_status ? "In" : "Out");
 	clrtoeol();
 }
+*/

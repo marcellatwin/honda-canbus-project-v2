@@ -20,6 +20,11 @@
 #define DATA_COLM  23
 #endif
 
+// Row to start printing on
+#ifndef STARTING_ROW
+#define STARTING_ROW  1
+#endif
+
 // Ncurses library
 #include <ncurses.h>
 
@@ -36,5 +41,8 @@
 // Function prototypes
 void start_text_dash(void);
 void end_text_dash(void);
+
+void text_dash_titles(void);
+void text_dash_data(void);
 
 #endif

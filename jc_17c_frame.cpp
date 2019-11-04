@@ -59,6 +59,7 @@ canid_t CAN_frame_17c::get_class_id(void)
 }
 
 // For TESTING /////////////////////////////////////////////
+/*
 void CAN_frame_17c::print_test(void)
 {
 	mvprintw(6, TITLE_COLM, "Throttle pedal: %.1f", throttle_pedal);
@@ -70,3 +71,4 @@ void CAN_frame_17c::print_test(void)
 	mvprintw(9, TITLE_COLM, "RPM 1: %.1f", rpm_1);
 	clrtoeol();
 }
+*/

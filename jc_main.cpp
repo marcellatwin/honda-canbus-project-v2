@@ -43,6 +43,7 @@ int main(void)
 	{
 		// Start up ncurses window
 		start_text_dash();
+		text_dash_titles();
 
 		while (!quit_var)
 		{
@@ -62,10 +63,13 @@ int main(void)
 				frame_17c.convert_frame(frame);
 
 			// For testing ////////////////////////
+			text_dash_data();
+			/*
 			frame_13c.print_test();
 			frame_158.print_test();
 			frame_17c.print_test();
-
+			*/
+			
 			// For testing /////////////////////////////////////////
 			// Determind wheather to keep running or not
 			if (getch() == 'q')

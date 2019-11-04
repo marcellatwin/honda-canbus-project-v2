@@ -17,13 +17,15 @@
 #include <linux/can.h>
 
 // Ncurses library NEEDED FOR PRINT TESTING FOR NOW////////////////////////
-#include <ncurses.h>
+//#include <ncurses.h>
 
 class CAN_frame_17c : public Converted_CAN_Data
 {
 private:
 	static canid_t frame_id;
 
+public:
+    // Consider making PRIVATE????????????????????????????????
     float throttle_pedal;
 
     // Consider making an int??????????????????????????????????
@@ -31,12 +33,12 @@ private:
 
     bool cruise_cont_active_flag;
 	bool brake_status;
-public:
+
 	CAN_frame_17c();
 	canid_t get_class_id(void);
     void convert_frame(struct can_frame &);
 
-    void print_test(void);
+    //void print_test(void);
 };
 
 #endif

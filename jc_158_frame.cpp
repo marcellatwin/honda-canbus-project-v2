@@ -25,10 +25,8 @@ CAN_frame_158::CAN_frame_158()
 
 void CAN_frame_158::convert_frame(struct can_frame & frame)
 {
-
 	speed_1 = ((frame.data[0] << 8) + (frame.data[1])) / 160;
 	speed_2 = ((frame.data[4] << 8) + (frame.data[5])) / 160;
-
 }
 
 canid_t CAN_frame_158::get_class_id(void)
@@ -37,6 +35,7 @@ canid_t CAN_frame_158::get_class_id(void)
 }
 
 // For TESTING /////////////////////////////////////////////
+/*
 void CAN_frame_158::print_test(void)
 {
 	mvprintw(11, TITLE_COLM, "Speed 1: %.1f", speed_1);
@@ -45,3 +44,4 @@ void CAN_frame_158::print_test(void)
 	clrtoeol();
 	
 }
+*/
