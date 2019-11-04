@@ -55,7 +55,11 @@ canid_t CAN_frame_13c::get_class_id(void)
 void CAN_frame_13c::print_test(void)
 {
 	mvprintw(1, 1, "Throttle Comm: %.1f", throttle_command);
+	clrtoeol();
 	mvprintw(2, 1, "Throttle plate: %.1f", throttle_plate);
+	clrtoeol();
 	mvprintw(3, 1, "Load Comm: %.1f", load_command);
+	clrtoeol();
 	mvprintw(4, 1, "Clutch: %s", clutch_status ? "In" : "Out");
+	clrtoeol();
 }

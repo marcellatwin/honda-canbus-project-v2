@@ -18,7 +18,7 @@ void start_text_dash(void)
     //clear();
 
     // Set to no delay on getch() from user???
-    //nodelay(stdscr, TRUE);
+    nodelay(stdscr, TRUE);
     
     // Make the cursor invisible
     curs_set(0);

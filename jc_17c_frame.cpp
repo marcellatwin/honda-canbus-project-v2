@@ -55,6 +55,9 @@ canid_t CAN_frame_17c::get_class_id(void)
 void CAN_frame_17c::print_test(void)
 {
 	mvprintw(6, 1, "Throttle pedal: %.1f", throttle_pedal);
+	clrtoeol();
 	mvprintw(7, 1, "Cruise Control Active: %s", cruise_cont_active_flag ? "Active" : "Inactive");
+	clrtoeol();
 	mvprintw(8, 1, "Clutch: %s", brake_status ? "On" : "Off");
+	clrtoeol();
 }
