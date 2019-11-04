@@ -53,15 +53,22 @@ int main(void)
 				break;
 
 			// Switch case for each decoded frame 
+			if (frame.can_id == frame_13c.get_class_id())
+				frame_13c.convert_frame(frame);
+			else if (frame.can_id == frame_17c.get_class_id())
+				frame_17c.convert_frame(frame);
+
+			/*
 			switch (frame.can_id)
 			{
-				case (frame_13c.get_class_id())
+				case (frame_13c.get_class_id()):
 					frame_13c.convert_frame(frame);
 					break;
-				case (frame_17c.get_class_id())
+				case (frame_17c.get_class_id()):
 					frame_17c.convert_frame(frame);
 					break;
 			}
+			*/
 
 			// For testing ////////////////////////
 			frame_13c.print_test();

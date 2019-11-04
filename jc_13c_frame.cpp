@@ -13,7 +13,7 @@
 using namespace std;
 
 // Set static frame ID
-__u8 CAN_frame_13c::frame_id = 0x13c;
+canid_t CAN_frame_13c::frame_id = 0x13c;
 
 // Constructor that set initial values for throttle data
 CAN_frame_13c::CAN_frame_13c()
@@ -46,13 +46,13 @@ void CAN_frame_13c::convert_frame(struct can_frame & frame)
 
 }
 
-__u8 CAN_frame_13c::get_class_id(void)
+canid_t CAN_frame_13c::get_class_id(void)
 {
 	return frame_id;
 }
 
 // For TESTING /////////////////////////////////////////////
-void print_test(void)
+void CAN_frame_13c::print_test(void)
 {
 	mvprintw(1, 1, "Throttle Comm: %.1f", throttle_command);
 	mvprintw(2, 1, "Throttle plate: %.1f", throttle_plate);

@@ -10,10 +10,19 @@
 #ifndef JC_13C_FRAME_H
 #define JC_13C_FRAME_H
 
+// Parent class library for converting CAN data
+#include "jc_converted_CAN_data.h"
+
+// Library for linux types
+#include <linux/can.h>
+
+// Ncurses library NEEDED FOR PRINT TESTING FOR NOW////////////////////////
+#include <ncurses.h>
+
 class CAN_frame_13c : public Converted_CAN_Data
 {
 private:
-	static __u8 frame_id;
+	static canid_t frame_id;
 
     float throttle_command;
 	float throttle_plate;
@@ -22,7 +31,7 @@ private:
 	bool clutch_status;
 public:
 	CAN_frame_13c();
-	__u8 get_class_id(void);
+	canid_t get_class_id(void);
     void convert_frame(struct can_frame &);
 
     void print_test(void);

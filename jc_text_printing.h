@@ -20,6 +20,9 @@
 #define DATA_COLM  23
 #endif
 
+// Ncurses library
+#include <ncurses.h>
+
 // Set up escape sequences for cursor and screen control
 #if 0
 #define CLR_SCREEN		"\33[2J"

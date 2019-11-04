@@ -13,7 +13,7 @@
 using namespace std;
 
 // Set static frame ID
-__u8 CAN_frame_17c::frame_id = 0x17c;
+canid_t CAN_frame_17c::frame_id = 0x17c;
 
 // Constructor that set initial values for throttle data
 CAN_frame_17c::CAN_frame_17c()
@@ -46,13 +46,13 @@ void CAN_frame_17c::convert_frame(struct can_frame & frame)
 
 }
 
-__u8 CAN_frame_17c::get_class_id(void)
+canid_t CAN_frame_17c::get_class_id(void)
 {
 	return frame_id;
 }
 
 // For TESTING /////////////////////////////////////////////
-void print_test(void)
+void CAN_frame_17c::print_test(void)
 {
 	mvprintw(6, 1, "Throttle pedal: %.1f", throttle_pedal);
 	mvprintw(7, 1, "Cruise Control Active: %s", cruise_cont_active_flag ? "Active" : "Inactive");
