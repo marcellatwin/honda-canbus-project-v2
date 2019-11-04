@@ -22,6 +22,9 @@ CAN_frame_17c::CAN_frame_17c()
 	// Set initial values of converted data
     throttle_pedal = 0;
 
+	// Consider making an int??????????????????????????????????
+    rpm_1 = 0;
+
     brake_status = false;
     cruise_cont_active_flag = false;
 
@@ -34,11 +37,13 @@ void CAN_frame_17c::convert_frame(struct can_frame & frame)
 	//throttle_pedal = ((frame.data[0] << 8) + (frame.data[1])) / 654;
 	throttle_pedal = ((frame.data[0] << 8) + (frame.data[1])) / 655.35;
 	
+	// Consider making an int??????????????????????????????????
+	rpm_1 = (frame.data[2] << 8) + (frame.data[3]);
+
 	if (frame.data[4] == 0x48)
 		cruise_cont_active_flag = true;
 	else
 		cruise_cont_active_flag = false;
-
 
 	if (frame.data[6] == 0x20)
 		brake_status = true;
@@ -61,5 +66,7 @@ void CAN_frame_17c::print_test(void)
 	mvprintw(7, TITLE_COLM, "Cruise Control Active: %s", cruise_cont_active_flag ? "Active" : "Inactive");
 	clrtoeol();
 	mvprintw(8, TITLE_COLM, "Brake: %s", brake_status ? "On" : "Off");
+	clrtoeol();
+	mvprintw(9, TITLE_COLM, "RPM 1: %.1f", rpm_1);
 	clrtoeol();
 }
