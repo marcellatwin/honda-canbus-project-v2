@@ -33,6 +33,7 @@ int main(void)
 
 	// Set up CAN message classes
 	CAN_frame_13c frame_13c;
+	CAN_frame_158 frame_158;
 	CAN_frame_17c frame_17c;
 
 	// For testing ///////////////////////////////////////
@@ -55,25 +56,15 @@ int main(void)
 			// Switch case for each decoded frame 
 			if (frame.can_id == frame_13c.get_class_id())
 				frame_13c.convert_frame(frame);
+			else if (frame.can_id == frame_158.get_class_id())
+				frame_158.convert_frame(frame);
 			else if (frame.can_id == frame_17c.get_class_id())
 				frame_17c.convert_frame(frame);
 
-			/*
-			switch (frame.can_id)
-			{
-				case (frame_13c.get_class_id()):
-					frame_13c.convert_frame(frame);
-					break;
-				case (frame_17c.get_class_id()):
-					frame_17c.convert_frame(frame);
-					break;
-			}
-			*/
-
 			// For testing ////////////////////////
 			frame_13c.print_test();
+			frame_158.print_test();
 			frame_17c.print_test();
-
 
 			// For testing /////////////////////////////////////////
 			// Determind wheather to keep running or not
