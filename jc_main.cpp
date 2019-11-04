@@ -19,6 +19,7 @@
 // Children class libraries for CAN frames
 #include "jc_13c_frame.h"
 #include "jc_17c_frame.h"
+#include "jc_158_frame.h"
 
 // Supporting header file for printing
 #include "jc_text_printing.h"
@@ -69,7 +70,7 @@ int main(void)
 			frame_158.print_test();
 			frame_17c.print_test();
 			*/
-			
+
 			// For testing /////////////////////////////////////////
 			// Determind wheather to keep running or not
 			if (getch() == 'q')

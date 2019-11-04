@@ -7,8 +7,8 @@
  * Cpp file for printing to the console with ncurses
  */
 
-// Library for controlling the terminal curser
-#include <ncurses.h>
+// Corresponding header file
+#include "jc_text_printing.h"
 
 // Initialize ncurses window
 void start_text_dash(void)
