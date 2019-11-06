@@ -14,6 +14,9 @@
 // Library for linux types
 #include <linux/can.h>
 
+// Library for vectors
+#include <vector>
+
 // Library for time ??????
 //#include <time.h>
 
@@ -22,11 +25,16 @@
 #include "jc_158_frame.h"
 #include "jc_17c_frame.h"
 
+using namespace std;
+
 class Decoded_frame
 {
 private:
-	int array_size;
-	canid_t frame_ID_array[];
+	//canid_t frame_ID_array[];
+	
+	vector<canid_t> frame_IDs;
+
+	//int array_size;
 
 public:
 	// Not sure if this is NEEDED????????????????????????
