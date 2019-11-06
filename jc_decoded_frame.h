@@ -30,7 +30,8 @@ using namespace std;
 class Decoded_frame
 {
 private:
-	//canid_t frame_ID_array[];
+	// NEED TO MAKE DYNAMIC/////////////////////////////////
+	//canid_t frame_ID_array[10];
 	
 	vector<canid_t> frame_IDs;
 
