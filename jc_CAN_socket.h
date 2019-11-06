@@ -21,8 +21,6 @@
 #include <net/if.h>
 #include <unistd.h>
 
-//#include <fcntl.h>
-
 // Libraries for linux-can-utils
 #include <linux/can.h>
 #include <linux/can/raw.h>
