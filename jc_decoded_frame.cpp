@@ -33,6 +33,8 @@ Decoded_frame::Decoded_frame()
 
 	frame_IDs.push_back(frame_1a4.get_class_ID());
 
+	frame_IDs.push_back(frame_1a6.get_class_ID());
+
 }
 
 
@@ -60,6 +62,9 @@ void Decoded_frame::new_frame(struct can_frame & new_frame)
 
 		else if (new_frame.can_id == frame_1a4.get_class_ID())
 			frame_1a4.convert_frame(new_frame);
+
+		else if (new_frame.can_id == frame_1a6.get_class_ID())
+			frame_1a6.convert_frame(new_frame);
 	}
 
 	// Update time

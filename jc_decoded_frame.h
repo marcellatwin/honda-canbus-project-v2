@@ -25,6 +25,7 @@
 #include "jc_158_frame.h"
 #include "jc_17c_frame.h"
 #include "jc_1a4_frame.h"
+#include "jc_1a6_frame.h"
 
 using namespace std;
 
@@ -45,6 +46,7 @@ public:
 	CAN_frame_158 frame_158;
 	CAN_frame_17c frame_17c;
 	CAN_frame_1a4 frame_1a4;
+	CAN_frame_1a4 frame_1a6;
 
 	Decoded_frame();
     void new_frame(struct can_frame &);
