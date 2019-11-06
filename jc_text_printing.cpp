@@ -55,6 +55,10 @@ void print_dash_titles_text(void)
     mvprintw(row++, TITLE_COLM, "Brake:");
     mvprintw(row++, TITLE_COLM, "RPM 1:");
     row++;
+
+    mvprintw(row++, TITLE_COLM, "--Frame 1a4--");
+    mvprintw(row++, TITLE_COLM, "Brake pedal:");
+    row++;
 }
 
 // Print the text based data
@@ -91,6 +95,12 @@ void print_dash_data_text(Decoded_frame & decoded_frame)
     mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_17c.get_brake_status() ? "On" : "Off");
     clrtoeol();
     mvprintw(row++, DATA_COLM, "%d", decoded_frame.frame_17c.get_rpm_1());
+    clrtoeol();
+    row++;
+
+    // Frame 1a4 //
+    row++;
+    mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_1a4.get_brake_pedal());
     clrtoeol();
     row++;
 }
