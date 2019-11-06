@@ -13,6 +13,7 @@
 class Converted_CAN_Data
 {
 public:
+	canid_t get_class_ID(void);
     virtual void convert_frame(struct can_frame &) = 0;
 };
 
