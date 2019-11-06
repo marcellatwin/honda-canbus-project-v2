@@ -16,9 +16,6 @@
 // Library for linux types
 #include <linux/can.h>
 
-// Ncurses library NEEDED FOR PRINT TESTING FOR NOW////////////////////////
-//#include <ncurses.h>
-
 class CAN_frame_158 : public Converted_CAN_Data
 {
 private:
