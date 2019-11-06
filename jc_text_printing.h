@@ -17,7 +17,7 @@
 
 // Column for printing converted data
 #ifndef DATA_COLM
-#define DATA_COLM  18
+#define DATA_COLM  19
 #endif
 
 // Row to start printing on
