@@ -43,15 +43,3 @@ float CAN_frame_158::get_speed_2(void)
 {
 	return speed_2;
 }
-
-// For TESTING /////////////////////////////////////////////
-/*
-void CAN_frame_158::print_test(void)
-{
-	mvprintw(11, TITLE_COLM, "Speed 1: %.1f", speed_1);
-	clrtoeol();
-	mvprintw(12, TITLE_COLM, "Speed 2: %.1f", speed_2);
-	clrtoeol();
-	
-}
-*/

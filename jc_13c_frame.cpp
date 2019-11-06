@@ -20,8 +20,8 @@ CAN_frame_13c::CAN_frame_13c()
 {
 	
 	// Set initial values of converted data
-    throttle_command = 0.0;
-    throttle_plate = 0.0;
+    throttle_command = 0;
+    throttle_plate = 0;
     
     // VERIFY THIS DECODE
     load_command = 0.0;
@@ -52,12 +52,12 @@ canid_t CAN_frame_13c::get_class_ID(void)
 	return frame_id;
 }
 
-float CAN_frame_13c::get_throttle_command(void)
+int CAN_frame_13c::get_throttle_command(void)
 {
 	return throttle_command;
 }
 
-float CAN_frame_13c::get_throttle_plate(void)
+int CAN_frame_13c::get_throttle_plate(void)
 {
 	return throttle_plate;
 }
@@ -71,19 +71,3 @@ bool CAN_frame_13c::get_clutch_status(void)
 {
 	return clutch_status;
 }
-    
-
-// For TESTING /////////////////////////////////////////////
-/*
-void CAN_frame_13c::print_test(void)
-{
-	mvprintw(1, TITLE_COLM, "Throttle Comm: %.1f", throttle_command);
-	clrtoeol();
-	mvprintw(2, TITLE_COLM, "Throttle plate: %.1f", throttle_plate);
-	clrtoeol();
-	mvprintw(3, TITLE_COLM, "Load Comm: %.1f", load_command);
-	clrtoeol();
-	mvprintw(4, TITLE_COLM, "Clutch: %s", clutch_status ? "In" : "Out");
-	clrtoeol();
-}
-*/

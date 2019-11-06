@@ -35,7 +35,6 @@ public:
     float get_speed_1(void);
     float get_speed_2(void);
 
-    //void print_test(void);
 };
 
 #endif

@@ -25,10 +25,7 @@ private:
 	static canid_t frame_id;
 
     float throttle_pedal;
-
-    // Consider making an int??????????????????????????????????
-    float rpm_1;
-
+    int rpm_1;
     bool cruise_cont_active_flag;
 	bool brake_status;
 
@@ -38,11 +35,10 @@ public:
     void convert_frame(struct can_frame &);
 
     float get_throttle_pedal(void);
-    float get_rpm_1(void);
+    int get_rpm_1(void);
     bool get_cruise_cont_active_flag(void);
     bool get_brake_status(void);
 
-    //void print_test(void);
 };
 
 #endif

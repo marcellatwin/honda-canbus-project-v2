@@ -64,9 +64,9 @@ void print_dash_data_text(Decoded_frame & decoded_frame)
 
     // Frame 13c //
     row++;
-    mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_13c.get_throttle_command());
+    mvprintw(row++, DATA_COLM, "%d", decoded_frame.frame_13c.get_throttle_command());
     clrtoeol();
-    mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_13c.get_throttle_plate());
+    mvprintw(row++, DATA_COLM, "%d", decoded_frame.frame_13c.get_throttle_plate());
     clrtoeol();
     mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_13c.get_load_command());
     clrtoeol();
@@ -90,7 +90,7 @@ void print_dash_data_text(Decoded_frame & decoded_frame)
     clrtoeol();
     mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_17c.get_brake_status() ? "On" : "Off");
     clrtoeol();
-    mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_17c.get_rpm_1());
+    mvprintw(row++, DATA_COLM, "%d", decoded_frame.frame_17c.get_rpm_1());
     clrtoeol();
     row++;
 }
