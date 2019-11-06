@@ -23,7 +23,7 @@ private:
 
     float throttle_pedal;
     int rpm_1;
-    bool cruise_cont_active_flag;
+    bool cruise_cont_active_status;
 	bool brake_status;
 
 public:
@@ -33,7 +33,7 @@ public:
 
     float get_throttle_pedal(void);
     int get_rpm_1(void);
-    bool get_cruise_cont_active_flag(void);
+    bool get_cruise_cont_active_status(void);
     bool get_brake_status(void);
 
 };
