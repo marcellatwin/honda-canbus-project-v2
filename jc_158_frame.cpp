@@ -34,12 +34,12 @@ canid_t CAN_frame_158::get_class_ID(void)
 	return frame_id;
 }
 
-float get_speed_1(void)
+float CAN_frame_158::get_speed_1(void)
 {
 	return speed_1;
 }
 
-float get_speed_2(void)
+float CAN_frame_158::get_speed_2(void)
 {
 	return speed_2;
 }

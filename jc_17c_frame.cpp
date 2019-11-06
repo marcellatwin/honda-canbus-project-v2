@@ -55,22 +55,22 @@ canid_t CAN_frame_17c::get_class_ID(void)
 	return frame_id;
 }
 
-float get_throttle_pedal(void)
+float CAN_frame_17c::get_throttle_pedal(void)
 {
 	return throttle_pedal;
 }
 
-float get_rpm_1(void)
+float CAN_frame_17c::get_rpm_1(void)
 {
-	return rpm_1
+	return rpm_1;
 }
 
-bool get_cruise_cont_active_flag(void)
+bool CAN_frame_17c::get_cruise_cont_active_flag(void)
 {
 	return cruise_cont_active_flag;
 }
 
-bool get_brake_status(void)
+bool CAN_frame_17c::get_brake_status(void)
 {
 	return brake_status;
 }

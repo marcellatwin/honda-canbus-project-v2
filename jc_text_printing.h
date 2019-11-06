@@ -28,6 +28,9 @@
 // Ncurses library
 #include <ncurses.h>
 
+// Header file for Decoded_frame class
+#include "jc_decoded_frame.h"
+
 // Set up escape sequences for cursor and screen control
 #if 0
 #define CLR_SCREEN		"\33[2J"

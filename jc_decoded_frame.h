@@ -25,9 +25,16 @@
 class Decoded_frame
 {
 private:
-	canid_t frame_ID_array[];
 	int array_size;
+	canid_t frame_ID_array[];
+
 public:
+	// Not sure if this is NEEDED????????????????????????
+	// Does this need to be PRIVATE (but won't compile)????????????????
+	CAN_frame_13c frame_13c;
+	CAN_frame_158 frame_158;
+	CAN_frame_17c frame_17c;
+
 	Decoded_frame();
     void new_frame(struct can_frame &);
 };

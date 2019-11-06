@@ -52,22 +52,22 @@ canid_t CAN_frame_13c::get_class_ID(void)
 	return frame_id;
 }
 
-float get_throttle_command(void)
+float CAN_frame_13c::get_throttle_command(void)
 {
 	return throttle_command;
 }
 
-float get_throttle_plate(void)
+float CAN_frame_13c::get_throttle_plate(void)
 {
 	return throttle_plate;
 }
 
-float get_load_command(void)
+float CAN_frame_13c::get_load_command(void)
 {
 	return load_command;
 }
 
-bool get_clutch_status(void)
+bool CAN_frame_13c::get_clutch_status(void)
 {
 	return clutch_status;
 }

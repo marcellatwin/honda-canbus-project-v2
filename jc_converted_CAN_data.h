@@ -10,6 +10,9 @@
 #ifndef JC_CONVERTED_CAN_DATA_H
 #define JC_CONVERTED_CAN_DATA_H
 
+// Library for linux types
+#include <linux/can.h>
+
 class Converted_CAN_Data
 {
 public:

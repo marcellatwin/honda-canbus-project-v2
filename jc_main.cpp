@@ -13,8 +13,9 @@
 // Socket class library
 #include "jc_CAN_socket.h"
 
-// Parent class library for converting CAN data
+// Class header files for converting CAN data
 #include "jc_converted_CAN_data.h"
+#include "jc_decoded_frame.h"
 
 // Children class libraries for CAN frames
 #include "jc_13c_frame.h"

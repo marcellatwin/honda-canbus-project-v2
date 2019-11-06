@@ -19,19 +19,19 @@ Decoded_frame::Decoded_frame()
 	array_size = 0;
 
 	// Create CAN frame classes fill the frame ID array
-	CAN_frame_13c frame_13c;
+	//CAN_frame_13c frame_13c;
 	frame_ID_array[array_size] = frame_13c.get_class_ID();
 	
-	CAN_frame_158 frame_158;
+	//CAN_frame_158 frame_158;
 	frame_ID_array[array_size++] = frame_158.get_class_ID();
 	
-	CAN_frame_17c frame_17c;
+	//CAN_frame_17c frame_17c;
 	frame_ID_array[array_size++] = frame_17c.get_class_ID();
 
 }
 
 
-void new_frame(struct can_frame & new_frame)
+void Decoded_frame::new_frame(struct can_frame & new_frame)
 {
 	// Get new time and delta
 	//new_time = ;
