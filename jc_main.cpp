@@ -17,11 +17,6 @@
 #include "jc_converted_CAN_data.h"
 #include "jc_decoded_frame.h"
 
-// Children class libraries for CAN frames
-#include "jc_13c_frame.h"
-#include "jc_17c_frame.h"
-#include "jc_158_frame.h"
-
 // Supporting header file for printing
 #include "jc_text_printing.h"
 
