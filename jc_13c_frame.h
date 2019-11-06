@@ -24,18 +24,21 @@ class CAN_frame_13c : public Converted_CAN_Data
 private:
 	static canid_t frame_id;
 
-public:
-	// Consider making PRIVATE????????????????????????????????
     float throttle_command;
 	float throttle_plate;
 	float load_command;
 
 	bool clutch_status;
-
+public:
 	CAN_frame_13c();
-	canid_t get_class_id(void);
+	canid_t get_class_ID(void);
     void convert_frame(struct can_frame &);
 
+    float get_throttle_command(void);
+    float get_throttle_plate(void);
+    float get_load_command(void);
+    bool get_clutch_status(void);
+    
     //void print_test(void);
 };
 

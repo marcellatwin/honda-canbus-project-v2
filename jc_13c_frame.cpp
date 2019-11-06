@@ -10,7 +10,7 @@
 // Corresponding header file
 #include "jc_13c_frame.h"
 
-using namespace std;
+//using namespace std;
 
 // Set static frame ID
 canid_t CAN_frame_13c::frame_id = 0x13c;
@@ -20,36 +20,58 @@ CAN_frame_13c::CAN_frame_13c()
 {
 	
 	// Set initial values of converted data
-    throttle_command = 0;
-    throttle_plate = 0;
-    clutch_status = false;
-
+    throttle_command = 0.0;
+    throttle_plate = 0.0;
+    
     // VERIFY THIS DECODE
-    load_command = 0;
+    load_command = 0.0;
+    
+    clutch_status = false;
 }
 
 void CAN_frame_13c::convert_frame(struct can_frame & frame)
 {
+
+	// Scaling needs fixing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	throttle_command = (frame.data[2] << 8) + (frame.data[3]);
+	throttle_plate = (frame.data[0] << 8) + (frame.data[1]);
+
+	// VERIFY THIS DECODE ////////////////////////////////////////////
+	load_command = frame.data[4] / 2.56;
+
 	// This may change, if 3, 2, or 1 is discovered, consider change
 	// for safety critical if needed
 	if (frame.data[6] == 0x04)
 		clutch_status = false;
 	else 
 		clutch_status = true;
-
-	// Scaling needs fixing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	throttle_plate = (frame.data[0] << 8) + (frame.data[1]);
-	throttle_command = (frame.data[2] << 8) + (frame.data[3]);
-
-	// VERIFY THIS DECODE ////////////////////////////////////////////
-	load_command = frame.data[4] / 2.56;
-
 }
 
-canid_t CAN_frame_13c::get_class_id(void)
+canid_t CAN_frame_13c::get_class_ID(void)
 {
 	return frame_id;
 }
+
+float get_throttle_command(void)
+{
+	return throttle_command;
+}
+
+float get_throttle_plate(void)
+{
+	return throttle_plate;
+}
+
+float get_load_command(void)
+{
+	return load_command;
+}
+
+bool get_clutch_status(void)
+{
+	return clutch_status;
+}
+    
 
 // For TESTING /////////////////////////////////////////////
 /*

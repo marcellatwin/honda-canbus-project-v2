@@ -10,7 +10,7 @@
 // Corresponding header file
 #include "jc_17c_frame.h"
 
-using namespace std;
+//using namespace std;
 
 // Set static frame ID
 canid_t CAN_frame_17c::frame_id = 0x17c;
@@ -25,9 +25,8 @@ CAN_frame_17c::CAN_frame_17c()
 	// Consider making an int??????????????????????????????????
     rpm_1 = 0;
 
-    brake_status = false;
     cruise_cont_active_flag = false;
-
+    brake_status = false;
 }
 
 void CAN_frame_17c::convert_frame(struct can_frame & frame)
@@ -49,13 +48,31 @@ void CAN_frame_17c::convert_frame(struct can_frame & frame)
 		brake_status = true;
 	else
 		brake_status = false;
-
-
 }
 
-canid_t CAN_frame_17c::get_class_id(void)
+canid_t CAN_frame_17c::get_class_ID(void)
 {
 	return frame_id;
+}
+
+float get_throttle_pedal(void)
+{
+	return throttle_pedal;
+}
+
+float get_rpm_1(void)
+{
+	return rpm_1
+}
+
+bool get_cruise_cont_active_flag(void)
+{
+	return cruise_cont_active_flag;
+}
+
+bool get_brake_status(void)
+{
+	return brake_status;
 }
 
 // For TESTING /////////////////////////////////////////////

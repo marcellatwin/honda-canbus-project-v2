@@ -10,12 +10,12 @@
 // Corresponding header file
 #include "jc_158_frame.h"
 
-using namespace std;
+//using namespace std;
 
 // Set static frame ID
 canid_t CAN_frame_158::frame_id = 0x158;
 
-// Constructor that set initial values for throttle data
+// Constructor that set initial values for speed data
 CAN_frame_158::CAN_frame_158()
 {
 	// Set initial values of converted data
@@ -29,9 +29,19 @@ void CAN_frame_158::convert_frame(struct can_frame & frame)
 	speed_2 = ((frame.data[4] << 8) + (frame.data[5])) / 160;
 }
 
-canid_t CAN_frame_158::get_class_id(void)
+canid_t CAN_frame_158::get_class_ID(void)
 {
 	return frame_id;
+}
+
+float get_speed_1(void)
+{
+	return speed_1;
+}
+
+float get_speed_2(void)
+{
+	return speed_2;
 }
 
 // For TESTING /////////////////////////////////////////////

@@ -24,8 +24,6 @@ class CAN_frame_17c : public Converted_CAN_Data
 private:
 	static canid_t frame_id;
 
-public:
-    // Consider making PRIVATE????????????????????????????????
     float throttle_pedal;
 
     // Consider making an int??????????????????????????????????
@@ -34,9 +32,15 @@ public:
     bool cruise_cont_active_flag;
 	bool brake_status;
 
+public:
 	CAN_frame_17c();
-	canid_t get_class_id(void);
+	canid_t get_class_ID(void);
     void convert_frame(struct can_frame &);
+
+    float get_throttle_pedal(void);
+    float get_rpm_1(void);
+    bool get_cruise_cont_active_flag(void);
+    bool get_brake_status(void);
 
     //void print_test(void);
 };
