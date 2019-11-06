@@ -42,7 +42,7 @@
 void start_text_dash(void);
 void end_text_dash(void);
 
-void text_dash_titles(void);
-void text_dash_data(void);
+void print_dash_titles_text(void);
+void print_dash_data_text(Decoded_frame &);
 
 #endif
