@@ -10,8 +10,6 @@
 // Corresponding header file
 #include "jc_158_frame.h"
 
-//using namespace std;
-
 // Set static frame ID
 canid_t CAN_frame_158::frame_id = 0x158;
 

@@ -10,8 +10,6 @@
 // Corresponding header file
 #include "jc_13c_frame.h"
 
-//using namespace std;
-
 // Set static frame ID
 canid_t CAN_frame_13c::frame_id = 0x13c;
 
