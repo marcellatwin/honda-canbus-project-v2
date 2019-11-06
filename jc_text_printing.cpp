@@ -59,6 +59,18 @@ void print_dash_titles_text(void)
     mvprintw(row++, TITLE_COLM, "--Frame 1a4--");
     mvprintw(row++, TITLE_COLM, "Brake pedal:");
     row++;
+
+    mvprintw(row++, TITLE_COLM, "--Frame 1a6--");
+    mvprintw(row++, TITLE_COLM, "Headlights:");
+    mvprintw(row++, TITLE_COLM, "E-brake:");
+    mvprintw(row++, TITLE_COLM, "Cruise Control:");
+    mvprintw(row++, TITLE_COLM, "Cruise Control - Main:");
+    mvprintw(row++, TITLE_COLM, "Cruise Control - Cancel:");
+    mvprintw(row++, TITLE_COLM, "Cruise Control - Set/Deaccelerate:");
+    mvprintw(row++, TITLE_COLM, "Cruise Control - Reset/Accelerate:");
+    mvprintw(row++, TITLE_COLM, "AC Compressor:");
+    mvprintw(row++, TITLE_COLM, "Reverse:");
+    row++;
 }
 
 // Print the text based data
@@ -90,7 +102,7 @@ void print_dash_data_text(Decoded_frame & decoded_frame)
     row++;
     mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_17c.get_throttle_pedal());
     clrtoeol();
-    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_17c.get_cruise_cont_active_flag() ? "Active" : "Inactive");
+    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_17c.get_cruise_cont_active_status() ? "Active" : "Inactive");
     clrtoeol();
     mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_17c.get_brake_status() ? "On" : "Off");
     clrtoeol();
@@ -101,6 +113,28 @@ void print_dash_data_text(Decoded_frame & decoded_frame)
     // Frame 1a4 //
     row++;
     mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_1a4.get_brake_pedal());
+    clrtoeol();
+    row++;
+
+    // Frame 1a6 //
+    row++;
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_headlights());
+    clrtoeol();
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_ebrake_status() ? "On" : "Off");
+    clrtoeol();
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_main_status() ? "On" : "Off");
+    clrtoeol();
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_main_button() ? "Pressed" : "na");
+    clrtoeol();
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_cancel_button() ? "Pressed" : "na");
+    clrtoeol();
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_set_deaccel_button() ? "Pressed" : "na");
+    clrtoeol();
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_reset_accel_button() ? "Pressed" : "na");
+    clrtoeol();
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_ac_compressor_status() ? "On" : "Off");
+    clrtoeol();
+    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_reverse_status() ? "Reverse" : "na");
     clrtoeol();
     row++;
 }
