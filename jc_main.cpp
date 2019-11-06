@@ -72,6 +72,8 @@ int main(void)
 				frame_17c.convert_frame(frame);
 			*/
 
+			decoded_frame.new_frame(frame);
+
 			print_dash_data_text(decoded_frame);
 
 			// For testing ////////////////////////

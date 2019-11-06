@@ -44,16 +44,16 @@ void Decoded_frame::new_frame(struct can_frame & new_frame)
 	for (unsigned int i = 0; i < frame_IDs.size(); i++)
 	//for (int i = 0; i < array_size; i++)
 	{
-		//if (frame_ID_array[i] == frame_13c.get_class_ID())
-		if (frame_IDs[i] == frame_13c.get_class_ID())
+		//if (new_frame.can_id == frame_13c.get_class_ID())
+		if (new_frame.can_id == frame_13c.get_class_ID())
 			frame_13c.convert_frame(new_frame);
 
-		//else if (frame_ID_array[i] == frame_158.get_class_ID())
-		else if (frame_IDs[i] == frame_158.get_class_ID())
+		//else if (new_frame.can_id == frame_158.get_class_ID())
+		else if (new_frame.can_id == frame_158.get_class_ID())
 			frame_158.convert_frame(new_frame);
 
-		//else if (frame_ID_array[i] == frame_17c.get_class_ID())
-		else if (frame_IDs[i] == frame_17c.get_class_ID())
+		//else if (new_frame.can_id == frame_17c.get_class_ID())
+		else if (new_frame.can_id == frame_17c.get_class_ID())
 			frame_17c.convert_frame(new_frame);
 	}
 
