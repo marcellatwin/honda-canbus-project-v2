@@ -17,15 +17,15 @@ canid_t CAN_frame_1a6::frame_id = 0x1a6;
 CAN_frame_1a6::CAN_frame_1a6()
 {
     // Set initial values of converted data
-    string headlights = "Not sure...";
-    bool ebrake_status = false;
-    bool cruise_cont_main_status = false;
-    bool cruise_cont_main_button = false;
-    bool cruise_cont_cancel_button = false;
-    bool cruise_cont_set_deaccel_button = false;
-    bool cruise_cont_reset_accel_button = false;
-    bool ac_compressor_status = false;
-    bool reverse_status = false;
+    headlights = "Not sure...";
+    ebrake_status = false;
+    cruise_cont_main_status = false;
+    cruise_cont_main_button = false;
+    cruise_cont_cancel_button = false;
+    cruise_cont_set_deaccel_button = false;
+    cruise_cont_reset_accel_button = false;
+    ac_compressor_status = false;
+    reverse_status = false;
 }
 
 void CAN_frame_1a6::convert_frame(struct can_frame & frame)
@@ -100,37 +100,37 @@ bool CAN_frame_1a6::get_ebrake_status(void)
     return ebrake_status;
 }
 
-bool get_cruise_control_main_status(void)
+bool CAN_frame_1a6::get_cruise_control_main_status(void)
 {
     return cruise_cont_main_status;
 }
 
-bool get_cruise_control_main_button(void)
+bool CAN_frame_1a6::get_cruise_control_main_button(void)
 {
     return cruise_cont_main_button;
 }
 
-bool get_cruise_control_cancel_button(void)
+bool CAN_frame_1a6::get_cruise_control_cancel_button(void)
 {
     return cruise_cont_cancel_button;
 }
 
-bool get_cruise_control_set_deaccel_button(void)
+bool CAN_frame_1a6::get_cruise_control_set_deaccel_button(void)
 {
     return cruise_cont_set_deaccel_button;
 }
 
-bool get_cruise_control_reset_accel_button(void)
+bool CAN_frame_1a6::get_cruise_control_reset_accel_button(void)
 {
     return cruise_cont_reset_accel_button;
 }
 
-bool get_ac_compressor_status(void)
+bool CAN_frame_1a6::get_ac_compressor_status(void)
 {
     return ac_compressor_status;
 }
 
-bool get_reverse_status(void)
+bool CAN_frame_1a6::get_reverse_status(void)
 {
     return reverse_status;
 }
