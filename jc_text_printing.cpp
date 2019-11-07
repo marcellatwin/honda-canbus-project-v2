@@ -125,23 +125,23 @@ void print_dash_data_text(Decoded_frame & decoded_frame)
 
     // Frame 1a6 //
     row++;
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_headlights());
+    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_1a6.get_headlights());
     clrtoeol();
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_ebrake_status() ? "On" : "Off");
+    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_1a6.get_ebrake_status() ? "On" : "Off");
     clrtoeol();
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_main_status() ? "On" : "Off");
+    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_1a6.get_cruise_control_main_status() ? "On" : "Off");
     clrtoeol();
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_main_button() ? "Pressed" : "na");
+    mvprintw(row++, DATA_COLM + 8, "%s", decoded_frame.frame_1a6.get_cruise_control_main_button() ? "Pressed" : "na");
     clrtoeol();
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_cancel_button() ? "Pressed" : "na");
+    mvprintw(row++, DATA_COLM + 8, "%s", decoded_frame.frame_1a6.get_cruise_control_cancel_button() ? "Pressed" : "na");
     clrtoeol();
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_set_deaccel_button() ? "Pressed" : "na");
+    mvprintw(row++, DATA_COLM + 20, "%s", decoded_frame.frame_1a6.get_cruise_control_set_deaccel_button() ? "Pressed" : "na");
     clrtoeol();
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_cruise_control_reset_accel_button() ? "Pressed" : "na");
+    mvprintw(row++, DATA_COLM + 20, "%s", decoded_frame.frame_1a6.get_cruise_control_reset_accel_button() ? "Pressed" : "na");
     clrtoeol();
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_ac_compressor_status() ? "On" : "Off");
+    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_1a6.get_ac_compressor_status() ? "On" : "Off");
     clrtoeol();
-    mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_reverse_status() ? "Reverse" : "na");
+    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_1a6.get_reverse_status() ? "Reverse" : "na");
     clrtoeol();
     row++;
 

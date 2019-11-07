@@ -48,7 +48,7 @@ public:
 	CAN_frame_158 frame_158;
 	CAN_frame_17c frame_17c;
 	CAN_frame_1a4 frame_1a4;
-	CAN_frame_1a4 frame_1a6;
+	CAN_frame_1a6 frame_1a6;
 
 	CAN_frame_324 frame_324;
 

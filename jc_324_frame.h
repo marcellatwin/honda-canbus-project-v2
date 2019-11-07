@@ -19,7 +19,7 @@
 // Library for strings
 #include <string>
 
-class CAN_frame_1a6 : public Converted_CAN_Data
+class CAN_frame_324 : public Converted_CAN_Data
 {
 private:
     static canid_t frame_id;
@@ -28,7 +28,7 @@ private:
     float intake_temp;
 
 public:
-    CAN_frame_1a6();
+    CAN_frame_324();
     canid_t get_class_ID(void);
     void convert_frame(struct can_frame &);
 

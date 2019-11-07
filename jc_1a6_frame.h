@@ -18,6 +18,7 @@
 
 // Library for strings
 #include <string>
+using namespace std;
 
 class CAN_frame_1a6 : public Converted_CAN_Data
 {

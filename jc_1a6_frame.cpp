@@ -33,11 +33,11 @@ void CAN_frame_1a6::convert_frame(struct can_frame & frame)
 
     if ((frame.data[0] & 0x0F) == 0x00 || (frame.data[0] & 0x0F) == 0x04)
         headlights = "Off";
-    else if ((frame->data[0] & 0x0F) == 0x01 || (frame->data[0] & 0x0F) == 0x05)
+    else if ((frame.data[0] & 0x0F) == 0x01 || (frame.data[0] & 0x0F) == 0x05)
         headlights = "Parking";
-    else if ((frame->data[0] & 0x0F) == 0x02 || (frame->data[0] & 0x0F) == 0x06)
+    else if ((frame.data[0] & 0x0F) == 0x02 || (frame.data[0] & 0x0F) == 0x06)
         headlights = "LOW Beams";
-    else if ((frame->data[0] & 0x0F) == 0x03 || (frame->data[0] & 0x0F) == 0x07)
+    else if ((frame.data[0] & 0x0F) == 0x03 || (frame.data[0] & 0x0F) == 0x07)
         headlights = "HIGH Beams";
     else
         headlights = "Not sure...";
@@ -48,33 +48,33 @@ void CAN_frame_1a6::convert_frame(struct can_frame & frame)
         ebrake_status = false;
     
 
-    if ((frame->data[5] >> 4) == 0x08)
+    if ((frame.data[5] >> 4) == 0x08)
         cruise_cont_main_status = true;
     else
         cruise_cont_main_status = false;
 
-    if ((frame->data[0] >> 4) == 0x02)
+    if ((frame.data[0] >> 4) == 0x02)
         cruise_cont_main_button = true;
     else
         cruise_cont_main_button = false;
 
-    if ((frame->data[0] >> 4) == 0x04)
+    if ((frame.data[0] >> 4) == 0x04)
         cruise_cont_cancel_button = true;
     else
         cruise_cont_cancel_button = false;
 
-    if ((frame->data[0] >> 4) == 0x06)
+    if ((frame.data[0] >> 4) == 0x06)
         cruise_cont_set_deaccel_button = true;
     else
         cruise_cont_set_deaccel_button = false;
 
-    if ((frame->data[0] >> 4) == 0x08)
+    if ((frame.data[0] >> 4) == 0x08)
         cruise_cont_reset_accel_button = true;
     else
         cruise_cont_reset_accel_button = false;
 
 
-    if ((frame->data[2] >> 4) == 0x04)
+    if ((frame.data[2] >> 4) == 0x04)
         ac_compressor_status = true;
     else
         ac_compressor_status = false;
