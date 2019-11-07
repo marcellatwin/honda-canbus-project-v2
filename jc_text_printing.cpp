@@ -71,6 +71,13 @@ void print_dash_titles_text(void)
     mvprintw(row++, TITLE_COLM, "AC Compressor:");
     mvprintw(row++, TITLE_COLM, "Reverse:");
     row++;
+
+
+
+    mvprintw(row++, TITLE_COLM, "--Frame 324--");
+    mvprintw(row++, TITLE_COLM, "Water Temp (C):");
+    mvprintw(row++, TITLE_COLM, "Intake Temp (C):");
+    row++;
 }
 
 // Print the text based data
@@ -135,6 +142,16 @@ void print_dash_data_text(Decoded_frame & decoded_frame)
     mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_ac_compressor_status() ? "On" : "Off");
     clrtoeol();
     mvprintw(row++, REQ_END_LINE + 2, "%s", decoded_frame.frame_1a6.get_reverse_status() ? "Reverse" : "na");
+    clrtoeol();
+    row++;
+
+
+
+    // Frame 324 //
+    row++;
+    mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_324.get_water_temp());
+    clrtoeol();
+    mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_324.get_intake_temp());
     clrtoeol();
     row++;
 }
