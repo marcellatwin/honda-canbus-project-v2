@@ -17,7 +17,7 @@ canid_t CAN_frame_1a6::frame_id = 0x1a6;
 CAN_frame_1a6::CAN_frame_1a6()
 {
     // Set initial values of converted data
-    string headlights = "Not sure";
+    string headlights = "Not sure...";
     bool ebrake_status = false;
     bool cruise_cont_main_status = false;
     bool cruise_cont_main_button = false;
@@ -31,22 +31,58 @@ CAN_frame_1a6::CAN_frame_1a6()
 void CAN_frame_1a6::convert_frame(struct can_frame & frame)
 {
 
-//// CHECK OLD MAIN FOR BIT CONVERSIONS /////////////////////////////////
-    headlights = ((frame.data[0] << 8) + (frame.data[1])) / 655.35;
+    if ((frame.data[0] & 0x0F) == 0x00 || (frame.data[0] & 0x0F) == 0x04)
+        headlights = "Off";
+    else if ((frame->data[0] & 0x0F) == 0x01 || (frame->data[0] & 0x0F) == 0x05)
+        headlights = "Parking";
+    else if ((frame->data[0] & 0x0F) == 0x02 || (frame->data[0] & 0x0F) == 0x06)
+        headlights = "LOW Beams";
+    else if ((frame->data[0] & 0x0F) == 0x03 || (frame->data[0] & 0x0F) == 0x07)
+        headlights = "HIGH Beams";
+    else
+        headlights = "Not sure...";
+
+    if ((frame.data[0] & 0x0F) >= 0x04)
+        ebrake_status = true;
+    else
+        ebrake_status = false;
     
-    rpm_1 = (frame.data[2] << 8) + (frame.data[3]);
 
-    if (frame.data[4] == 0x48)
-        cruise_cont_active_status = true;
+    if ((frame->data[5] >> 4) == 0x08)
+        cruise_cont_main_status = true;
     else
-        cruise_cont_active_status = false;
+        cruise_cont_main_status = false;
 
-    if (frame.data[6] == 0x20)
-        brake_status = true;
+    if ((frame->data[0] >> 4) == 0x02)
+        cruise_cont_main_button = true;
     else
-        brake_status = false;
-//// CHECK OLD MAIN FOR BIT CONVERSIONS /////////////////////////////////
+        cruise_cont_main_button = false;
 
+    if ((frame->data[0] >> 4) == 0x04)
+        cruise_cont_cancel_button = true;
+    else
+        cruise_cont_cancel_button = false;
+
+    if ((frame->data[0] >> 4) == 0x06)
+        cruise_cont_set_deaccel_button = true;
+    else
+        cruise_cont_set_deaccel_button = false;
+
+    if ((frame->data[0] >> 4) == 0x08)
+        cruise_cont_reset_accel_button = true;
+    else
+        cruise_cont_reset_accel_button = false;
+
+
+    if ((frame->data[2] >> 4) == 0x04)
+        ac_compressor_status = true;
+    else
+        ac_compressor_status = false;
+
+    if ((frame.data[2] & 0x0F) == 0x04)
+        reverse_status = true;
+    else
+        reverse_status = false;
 }
 
 canid_t CAN_frame_1a6::get_class_ID(void)
@@ -54,18 +90,47 @@ canid_t CAN_frame_1a6::get_class_ID(void)
     return frame_id;
 }
 
-float CAN_frame_1a6::get_throttle_pedal(void)
+string CAN_frame_1a6::get_headlights(void)
 {
-    return throttle_pedal;
+    return headlights;
 }
 
+bool CAN_frame_1a6::get_ebrake_status(void)
+{
+    return ebrake_status;
+}
 
-    string get_headlights(void);
-    bool get_ebrake_status(void);
-    bool get_cruise_control_main_status(void);
-    bool get_cruise_control_main_button(void);
-    bool get_cruise_control_cancel_button(void);
-    bool get_cruise_control_set_deaccel_button(void);
-    bool get_cruise_control_reset_accel_button(void);
-    bool get_ac_compressor_status(void);
-    bool get_reverse_status(void);
+bool get_cruise_control_main_status(void)
+{
+    return cruise_cont_main_status;
+}
+
+bool get_cruise_control_main_button(void)
+{
+    return cruise_cont_main_button;
+}
+
+bool get_cruise_control_cancel_button(void)
+{
+    return cruise_cont_cancel_button;
+}
+
+bool get_cruise_control_set_deaccel_button(void)
+{
+    return cruise_cont_set_deaccel_button;
+}
+
+bool get_cruise_control_reset_accel_button(void)
+{
+    return cruise_cont_reset_accel_button;
+}
+
+bool get_ac_compressor_status(void)
+{
+    return ac_compressor_status;
+}
+
+bool get_reverse_status(void)
+{
+    return reverse_status;
+}
