@@ -15,11 +15,15 @@ using namespace std;
 // Constructor that sets up the socket
 CAN_socket::CAN_socket()
 {
+	// Set initial values
+	sock_error = false;
+
 	// Set the file descriptor for the socket
 	s = socket(PF_CAN, SOCK_RAW, CAN_RAW);
 	if (s == -1)
 	{
 		perror("Error with setting up socket file descriptor: ");
+		// output to logfile - FOR LATER
 		sock_error = true;
 	}
 	else
@@ -31,6 +35,7 @@ CAN_socket::CAN_socket()
 		if (ioctl(s, SIOCGIFINDEX, &ifr) == -1)
 		{
 			perror("Error with control device (SIOCGIFINDEX): ");
+			// output to logfile - FOR LATER
 			sock_error = true;
 		}
 		else
@@ -61,7 +66,7 @@ CAN_socket::~CAN_socket()
 }
 
 // Returns the state of the error variable
-bool CAN_socket::socket_error()
+bool CAN_socket::socket_error(void)
 {
 	return sock_error;
 }
@@ -69,11 +74,22 @@ bool CAN_socket::socket_error()
 // Reads the CAN bus and places it in a can_frame struct
 struct can_frame CAN_socket::read_frame(struct can_frame &frame)
 {
-	if (read(s, &frame, sizeof(struct can_frame)) < 0)
+	if (read(s, &frame, sizeof(struct can_frame)) == -1)
 	{
 		sock_error = true;
 		cout << "Error reading CAN bus" << endl;
+		// output to logfile - FOR LATER
 	}
 	
 	return frame;
+}
+
+// Get the current timestamp from socket
+struct timeval get_timestamp(void)
+{
+	int temp_error = ioctl(s, SIOCGSTAMP, &time_stamp);
+	if (temp_error == -1)
+		sock_error = true;
+	else
+		return time_stamp;
 }

@@ -18,6 +18,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
+#include <sys/time.h>
 #include <net/if.h>
 #include <unistd.h>
 
@@ -28,15 +29,18 @@
 class CAN_socket
 {
 private:
-	bool sock_error = false;
+	bool sock_error;
 	int s;
 	struct sockaddr_can addr;
 	struct ifreq ifr;
+	struct timeval time_stamp;
+
 public:
 	CAN_socket();
 	~CAN_socket();
-	bool socket_error();
+	bool socket_error(void);
 	struct can_frame read_frame(struct can_frame &);
+	struct timeval get_timestamp(void);
 };
 
 #endif
