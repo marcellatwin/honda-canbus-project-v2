@@ -14,11 +14,14 @@
 #include "jc_CAN_socket.h"
 
 // Class header files for converting CAN data
-#include "jc_converted_CAN_data.h"
+//#include "jc_converted_CAN_data.h"
 #include "jc_decoded_frame.h"
 
 // Supporting header file for printing
 #include "jc_text_printing.h"
+
+// Class header file for logging
+#include "jc_logger.h"
 
 using namespace std;
 
@@ -26,6 +29,10 @@ using namespace std;
 
 int main(void)
 {
+	// Setup logging for errors - FOR LATER
+	//Logger error_log("error_log");
+	// WRITE TO ERROR LOG - time of starting!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 	// Set up socket and CAN frame
 	CAN_socket sock;
 	struct can_frame frame;
@@ -35,8 +42,20 @@ int main(void)
 
 	// For testing ///////////////////////////////////////
 	bool quit_var = false;
+	//bool data_log_status = false;
+	
+	// Set up outout class - FOR LATER
+	/*
+	Output output;
+	output.setup(TEXT, &decoded_frame);
+	output.setup(GUI, &decoded_frame);
+	*/
+	
+	// Set up data log
+	//Logger data_log("data_log") - FOR LATER
+	Logger data_log;
 
-	if (!sock.socket_error())
+	if (!sock.socket_error() || !data_log.log_error())
 	{
 		// Start up ncurses window
 		start_text_dash();
@@ -44,21 +63,27 @@ int main(void)
 
 		while (!quit_var)
 		{
-			// Get a frame to test
+			// Read in a frame and send it for processing
 			frame = sock.read_frame(frame);
-
-			// Break out if there's an error with reading the CAN bus
-			if(sock.socket_error())
-				break;
-
 			decoded_frame.new_frame(frame);
 
-			print_dash_data_text(decoded_frame);
+			// Print out the results
+			print_dash_data_text(decoded_frame, data_log);
+			//output.update() - FOR LATER
+
+			// Determind when to log data
+			if (getch() == 'l')
+				data_log.log_start_stop();
+			
+			if (data_log.get_log_status())
+				data_log.log_current();
 
 			// For testing /////////////////////////////////////////
-			// Determind wheather to keep running or not
-			if (getch() == 'q')
+			// Determind wheather to keep running by way of user input or
+			// an error with reading the CAN bus
+			if (getch() == 'q' || sock.socket_error() || data_log.log_error())
 				quit_var = true;
+			// WRITE TO ERROR LOG - time of ending!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 
 		// Shut down ncurses window

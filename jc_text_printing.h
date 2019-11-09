@@ -46,6 +46,6 @@ void start_text_dash(void);
 void end_text_dash(void);
 
 void print_dash_titles_text(void);
-void print_dash_data_text(Decoded_frame &);
+void print_dash_data_text(Decoded_frame &, Logging &);
 
 #endif

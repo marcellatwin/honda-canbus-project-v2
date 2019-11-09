@@ -37,6 +37,9 @@ void print_dash_titles_text(void)
 {
     int row = STARTING_ROW;
 
+    mvprintw(row++, TITLE_COLM, "Logging:");
+    row++;
+
     mvprintw(row++, TITLE_COLM, "--Frame 13c--");
     mvprintw(row++, TITLE_COLM, "Throttle Comm:");
     mvprintw(row++, TITLE_COLM, "Throttle plate:");
@@ -81,9 +84,13 @@ void print_dash_titles_text(void)
 }
 
 // Print the text based data
-void print_dash_data_text(Decoded_frame & decoded_frame)
+void print_dash_data_text(Decoded_frame & decoded_frame, Logging & data_log)
 {
     int row = STARTING_ROW;
+
+    mvprintw(row++, DATA_COLM, "%s", data_log.get_log_status ? "On" : "Off");
+    clrtoeol();
+    row++;
 
     // Frame 13c //
     row++;
