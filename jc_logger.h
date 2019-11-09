@@ -19,17 +19,24 @@
 class Logger
 {
 private:
-	//string file_name
-    int row_count;
+	string file_name;
+	string file_location;
+    //int row_count;
+
+    struct timeval temp_time;
 
 	bool log_status;
 	bool log_error;
 
+    ofstream csv_log;
+
 public:
 	Logger();
+	~Logger();
 	//Logfile(string); - FOR LATER
 
-    void log_current(void);
+	void log_titles(void);
+    void log_current(Decoded_frame &, CAN_socket &);
     void log_start_stop(void);
 
     bool get_log_status(void);
@@ -37,35 +44,3 @@ public:
 };
 
 #endif
-
-
-
-
-
-ofstream fout("/media/pi/0045-94E3/data_logs/");
-
-fout.good();  // or status???
-
-fout << (rand() % 100) + 1 << endl;
-
-
-
-
-
-sprintf(fname, "candump-%04d-%02d-%02d_%02d%02d%02d.log",
-			now.tm_year + 1900,
-			now.tm_mon + 1,
-			now.tm_mday,
-			now.tm_hour,
-			now.tm_min,
-			now.tm_sec);
-
-logfile = fopen(fname, "w");
-if (!logfile) {
-	perror("logfile");
-	return 1;
-}
-
-fprintf(logfile, "(%010ld.%06ld) %*s %s\n",
-						tv.tv_sec, tv.tv_usec,
-						max_devname_len, devname[idx], buf);

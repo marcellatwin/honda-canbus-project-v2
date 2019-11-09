@@ -42,7 +42,7 @@ int main(void)
 
 	// For testing ///////////////////////////////////////
 	bool quit_var = false;
-	//bool data_log_status = false;
+	int loop_counter = 0;
 	
 	// Set up outout class - FOR LATER
 	/*
@@ -75,8 +75,15 @@ int main(void)
 			if (getch() == 'l')
 				data_log.log_start_stop();
 			
+
 			if (data_log.get_log_status())
-				data_log.log_current();
+			{
+				// Increment loop counter
+				loop_counter++;
+
+				if ((loop_counter % 1000) = 0)
+					data_log.log_current(decoded_frame, sock);
+			}
 
 			// For testing /////////////////////////////////////////
 			// Determind wheather to keep running by way of user input or
