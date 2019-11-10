@@ -37,7 +37,7 @@ Logger::Logger()
 	csv_log.open(file_location + file_name.str());
 	
 	// Check if it is open
-	if (csv_log.is_open())
+	if (!csv_log.is_open())
 		log_error = true;
 }
 

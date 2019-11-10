@@ -56,7 +56,7 @@ int main(void)
 	Logger data_log;
 	data_log.log_titles();
 
-	if (!sock.socket_error() || !data_log.logger_error())
+	if (!sock.socket_error() && !data_log.logger_error())
 	{
 		// Start up ncurses window
 		start_text_dash();
@@ -82,7 +82,7 @@ int main(void)
 				// Increment loop counter
 				loop_counter++;
 
-				if ((loop_counter % 1000) == 0)
+				if ((loop_counter % 100) == 0)
 					data_log.log_current(decoded_frame, sock);
 			}
 
@@ -99,4 +99,6 @@ int main(void)
 	}
 	else
 		cout << "Socket or logger not set up correctly." << endl;
+
+	return 0;
 }
