@@ -16,7 +16,7 @@
 // Library for linux types
 #include <linux/can.h>
 
-// Library for strings
+// Library and namespace for strings
 #include <string>
 using namespace std;
 

@@ -16,9 +16,6 @@
 // Library for linux types
 #include <linux/can.h>
 
-// Library for strings
-#include <string>
-
 class CAN_frame_324 : public Converted_CAN_Data
 {
 private:

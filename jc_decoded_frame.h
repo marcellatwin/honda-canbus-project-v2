@@ -17,9 +17,6 @@
 // Library for vectors
 #include <vector>
 
-// Library for time ??????
-//#include <time.h>
-
 // Header files of each CAN frame class
 #include "jc_13c_frame.h"
 #include "jc_158_frame.h"
@@ -29,20 +26,15 @@
 
 #include "jc_324_frame.h"
 
+// Namespace for vector
 using namespace std;
 
 class Decoded_frame
 {
 private:
-	// NEED TO MAKE DYNAMIC/////////////////////////////////
-	//canid_t frame_ID_array[10];
-	
 	vector<canid_t> frame_IDs;
 
-	//int array_size;
-
 public:
-	// Not sure if this is NEEDED????????????????????????
 	// Does this need to be PRIVATE (but won't compile)????????????????
 	CAN_frame_13c frame_13c;
 	CAN_frame_158 frame_158;
