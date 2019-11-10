@@ -50,7 +50,16 @@ Logger::~Logger()
 void Logger::log_titles(void)
 {
 	if (csv_log.good())
-		csv_log << "time (s)" << "," << "throttle_pedal" << "," << "rpm" << "," << "AC" << endl;
+		csv_log << 
+			"time (s)" << "," << 
+			"throttle_pedal" << "," << 
+			"brake_pedal" << "," <<
+			"rpm_1" << "," << 
+			"speed_1" << "," <<
+			"water_temp" << "," <<
+			"intake_temp" << "," <<
+			"AC";
+		csv_log << endl;
 	else
 		log_error = true;
 }
@@ -61,7 +70,11 @@ void Logger::log_current(Decoded_frame & decoded_frame, CAN_socket & sock)
 
 	csv_log << temp_time.tv_sec << "." << temp_time.tv_usec << ",";
 	csv_log << decoded_frame.frame_17c.get_throttle_pedal() << ",";
+	csv_log << decoded_frame.frame_1a4.get_brake_pedal() << ",";
 	csv_log << decoded_frame.frame_17c.get_rpm_1() << ",";
+	csv_log << decoded_frame.frame_158.get_speed_1() << ",";
+	csv_log << decoded_frame.frame_324.get_water_temp() << ",";
+	csv_log << decoded_frame.frame_324.get_intake_temp() << ",";
 	csv_log << decoded_frame.frame_1a6.get_ac_compressor_status();
 
 	csv_log << endl;
