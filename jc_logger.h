@@ -16,19 +16,24 @@
 
 // Library for file streams
 #include <fstream>
+#include <sstream>
 
 // Library and namespace for strings
 #include <string>
+#include <boost/format.hpp>
 using namespace std;
 
 class Logger
 {
 private:
-	string file_name;
+	ostringstream file_name;
+	//string file_name;
 	string file_location;
     //int row_count;
 
     struct timeval temp_time;
+    struct tm now;
+    time_t current_time;
 
 	bool log_status;
 	bool log_error;

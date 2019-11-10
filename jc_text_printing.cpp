@@ -132,7 +132,7 @@ void print_dash_data_text(Decoded_frame & decoded_frame, Logger & data_log)
 
     // Frame 1a6 //
     row++;
-    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_1a6.get_headlights());
+    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_1a6.get_headlights().c_str());
     clrtoeol();
     mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_1a6.get_ebrake_status() ? "On" : "Off");
     clrtoeol();

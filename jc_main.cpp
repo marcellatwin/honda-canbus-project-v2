@@ -54,6 +54,7 @@ int main(void)
 	// Set up data log
 	//Logger data_log("data_log") - FOR LATER
 	Logger data_log;
+	data_log.log_titles();
 
 	if (!sock.socket_error() || !data_log.logger_error())
 	{
@@ -97,5 +98,5 @@ int main(void)
 		end_text_dash();
 	}
 	else
-		cout << "Socket not set up correctly." << endl;
+		cout << "Socket or logger not set up correctly." << endl;
 }

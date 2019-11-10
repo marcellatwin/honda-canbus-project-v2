@@ -19,21 +19,22 @@ Logger::Logger()
 	log_error = false;
 
 	// Get local time according to raspberry pi
-	struct tm now;
-	localtime_r(&time(NULL), &now); 
+	time(&current_time);
+	localtime_r(&current_time, &now); 
 
 	// Setup file name and location for log file
-	file_location = "/media/pi/0045-94E3/data_logs/";
-	sprintf(file_name, "log_%04d-%02d-%02d_%02d:%02d:%02d.csv",
-		now.tm_year + 1900,
-		now.tm_mon + 1,
-		now.tm_mday,
-		now.tm_hour,
-		now.tm_min,
-		now.tm_sec);
+	file_location = "/media/pi/PI_USB_LOGS/";
+	
+	file_name << boost::format("log_%04d-%02d-%02d_%02d-%02d-%02d.csv") %
+		(now.tm_year + 1900) %
+		(now.tm_mon + 1) %
+		now.tm_mday %
+		now.tm_hour % 
+		now.tm_min %
+		now.tm_sec;
 
 	// Create file and open it
-	csv_log.open(file_location + file_name);
+	csv_log.open(file_location + file_name.str());
 	
 	// Check if it is open
 	if (csv_log.is_open())
@@ -43,6 +44,7 @@ Logger::Logger()
 Logger::~Logger()
 {
 	csv_log.close();
+	cout << endl << "Destructor, closing " << file_location + file_name.str() << ", ending program!" << endl;
 }
 
 void Logger::log_titles(void)

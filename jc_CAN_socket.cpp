@@ -89,10 +89,6 @@ struct timeval CAN_socket::get_timestamp(void)
 {
 	int temp_error = ioctl(s, SIOCGSTAMP, &time_stamp);
 	if (temp_error == -1)
-	{
 		sock_error = true;
-		return NULL;
-	}
-	else
-		return time_stamp;
+	return time_stamp;
 }
