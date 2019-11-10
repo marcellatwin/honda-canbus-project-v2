@@ -40,7 +40,7 @@ int main(void)
 	// Set up CAN message classes
 	Decoded_frame decoded_frame;
 
-	// For testing ///////////////////////////////////////
+	// For NOW ///////////////////////////////////////
 	bool quit_var = false;
 	int loop_counter = 0;
 	
@@ -86,7 +86,7 @@ int main(void)
 					data_log.log_current(decoded_frame, sock);
 			}
 
-			// For testing /////////////////////////////////////////
+			// For NOW /////////////////////////////////////////
 			// Determind wheather to keep running by way of user input or
 			// an error with reading the CAN bus
 			if (getch() == 'q' || sock.socket_error() || data_log.logger_error())
