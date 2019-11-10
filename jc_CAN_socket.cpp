@@ -85,11 +85,14 @@ struct can_frame CAN_socket::read_frame(struct can_frame &frame)
 }
 
 // Get the current timestamp from socket
-struct timeval get_timestamp(void)
+struct timeval CAN_socket::get_timestamp(void)
 {
 	int temp_error = ioctl(s, SIOCGSTAMP, &time_stamp);
 	if (temp_error == -1)
+	{
 		sock_error = true;
+		return NULL;
+	}
 	else
 		return time_stamp;
 }

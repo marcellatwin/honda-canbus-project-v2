@@ -20,12 +20,11 @@ Logger::Logger()
 
 	// Get local time according to raspberry pi
 	struct tm now;
-	localtime_r(time(NULL), &now); 
+	localtime_r(&time(NULL), &now); 
 
 	// Setup file name and location for log file
 	file_location = "/media/pi/0045-94E3/data_logs/";
-	file_name;
-	sprintf(file_name, "log_%04d-%02d-%02d_%02d:%02d:%02d.csv"
+	sprintf(file_name, "log_%04d-%02d-%02d_%02d:%02d:%02d.csv",
 		now.tm_year + 1900,
 		now.tm_mon + 1,
 		now.tm_mday,
@@ -79,7 +78,7 @@ bool Logger::get_log_status(void)
 	return log_status;
 }
 
-bool Logger::log_error(void)
+bool Logger::logger_error(void)
 {
 	return log_error;
 }

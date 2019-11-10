@@ -28,8 +28,9 @@
 // Ncurses library
 #include <ncurses.h>
 
-// Header file for Decoded_frame class
+// Header files for classes used for printing
 #include "jc_decoded_frame.h"
+#include "jc_logger.h"
 
 // Set up escape sequences for cursor and screen control
 #if 0
@@ -46,6 +47,6 @@ void start_text_dash(void);
 void end_text_dash(void);
 
 void print_dash_titles_text(void);
-void print_dash_data_text(Decoded_frame &, Logging &);
+void print_dash_data_text(Decoded_frame &, Logger &);
 
 #endif

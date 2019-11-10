@@ -25,7 +25,7 @@
 
 using namespace std;
 
-//g++ -Wall -Wextra -O3 src/jc_main.cpp src/jc_CAN_socket.cpp src/jc_text_printing.cpp src/jc_decoded_frame.cpp src/jc_13c_frame.cpp src/jc_158_frame.cpp src/jc_17c_frame.cpp src/jc_1a4_frame.cpp src/jc_1a6_frame.cpp src/jc_324_frame.cpp -lncurses
+//g++ -Wall -Wextra -O3 src/jc_main.cpp src/jc_CAN_socket.cpp src/jc_text_printing.cpp src/jc_decoded_frame.cpp src/jc_logger.cpp src/jc_13c_frame.cpp src/jc_158_frame.cpp src/jc_17c_frame.cpp src/jc_1a4_frame.cpp src/jc_1a6_frame.cpp src/jc_324_frame.cpp -lncurses
 
 int main(void)
 {
@@ -55,7 +55,7 @@ int main(void)
 	//Logger data_log("data_log") - FOR LATER
 	Logger data_log;
 
-	if (!sock.socket_error() || !data_log.log_error())
+	if (!sock.socket_error() || !data_log.logger_error())
 	{
 		// Start up ncurses window
 		start_text_dash();
@@ -81,14 +81,14 @@ int main(void)
 				// Increment loop counter
 				loop_counter++;
 
-				if ((loop_counter % 1000) = 0)
+				if ((loop_counter % 1000) == 0)
 					data_log.log_current(decoded_frame, sock);
 			}
 
 			// For testing /////////////////////////////////////////
 			// Determind wheather to keep running by way of user input or
 			// an error with reading the CAN bus
-			if (getch() == 'q' || sock.socket_error() || data_log.log_error())
+			if (getch() == 'q' || sock.socket_error() || data_log.logger_error())
 				quit_var = true;
 			// WRITE TO ERROR LOG - time of ending!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}

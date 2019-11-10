@@ -7,14 +7,19 @@
  * Header file for class associated with creating log files
  */
 
-#ifndef JC_LOGFILE_H
-#define JC_LOGFILE_H
+#ifndef JC_LOGGER_H
+#define JC_LOGGER_H
+
+// Header files for what is being logged
+#include "jc_decoded_frame.h"
+#include "jc_CAN_socket.h"
 
 // Library for file streams
 #include <fstream>
 
-// Library for linux types
-//#include <linux/can.h>
+// Library and namespace for strings
+#include <string>
+using namespace std;
 
 class Logger
 {
@@ -40,7 +45,7 @@ public:
     void log_start_stop(void);
 
     bool get_log_status(void);
-	bool log_error(void);
+	bool logger_error(void);
 };
 
 #endif
