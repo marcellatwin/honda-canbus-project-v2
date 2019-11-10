@@ -50,6 +50,7 @@ Logger::~Logger()
 void Logger::log_titles(void)
 {
 	if (csv_log.good())
+	{
 		csv_log << 
 			"time (s)" << "," << 
 			"throttle_pedal" << "," << 
@@ -60,6 +61,7 @@ void Logger::log_titles(void)
 			"intake_temp" << "," <<
 			"AC";
 		csv_log << endl;
+	}
 	else
 		log_error = true;
 }
