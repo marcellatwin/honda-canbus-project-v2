@@ -13,7 +13,7 @@
 // Set static frame ID
 canid_t CAN_frame_1a4::frame_id = 0x1a4;
 
-// Constructor that set initial values for speed data
+// Constructor that set initial values
 CAN_frame_1a4::CAN_frame_1a4()
 {
 	// Set initial values of converted data

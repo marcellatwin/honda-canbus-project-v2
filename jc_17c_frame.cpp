@@ -13,7 +13,7 @@
 // Set static frame ID
 canid_t CAN_frame_17c::frame_id = 0x17c;
 
-// Constructor that set initial values for throttle data
+// Constructor that set initial values
 CAN_frame_17c::CAN_frame_17c()
 {
 	
