@@ -75,7 +75,18 @@ void print_dash_titles_text(void)
     mvprintw(row++, TITLE_COLM, "Reverse:");
     row++;
 
+    mvprintw(row++, TITLE_COLM, "--Frame 1d0--");
+    mvprintw(row++, TITLE_COLM, "Speed 3:");
+    row++;
 
+    mvprintw(row++, TITLE_COLM, "--Frame 1dc--");
+    mvprintw(row++, TITLE_COLM, "RPM 2:");
+    row++;
+
+
+    mvprintw(row++, TITLE_COLM, "--Frame 320--");
+    mvprintw(row++, TITLE_COLM, "VTEC:");
+    row++;
 
     mvprintw(row++, TITLE_COLM, "--Frame 324--");
     mvprintw(row++, TITLE_COLM, "Water Temp (C):");
@@ -152,7 +163,24 @@ void print_dash_data_text(Decoded_frame & decoded_frame, Logger & data_log)
     clrtoeol();
     row++;
 
+    // Frame 1d0 //
+    row++;
+    mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_1d0.get_speed_3());
+    clrtoeol();
+    row++;
 
+    // Frame 1dc //
+    row++;
+    mvprintw(row++, DATA_COLM, "%d", decoded_frame.frame_1dc.get_rpm_2());
+    clrtoeol();
+    row++;
+
+
+    // Frame 320 //
+    row++;
+    mvprintw(row++, DATA_COLM, "%s", decoded_frame.frame_320.get_vtec_status() ? "Just Kicked In Yo!" : "Off");
+    clrtoeol();
+    row++;
 
     // Frame 324 //
     row++;
