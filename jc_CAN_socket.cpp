@@ -5,6 +5,8 @@
  *
  * jc_CAN_socket.cpp
  * Cpp file for connecting to socket
+ * General code for connecting to socket taken from:
+ *   Copyright (c) 2002-2009 Volkswagen Group Electronic Research
  */
 
 // Corresponding header file
