@@ -25,7 +25,7 @@
 
 using namespace std;
 
-//g++ -Wall -Wextra -O3 src/jc_main.cpp src/jc_CAN_socket.cpp src/jc_text_printing.cpp src/jc_decoded_frame.cpp src/jc_logger.cpp src/jc_13c_frame.cpp src/jc_158_frame.cpp src/jc_17c_frame.cpp src/jc_1a4_frame.cpp src/jc_1a6_frame.cpp src/jc_324_frame.cpp -lncurses
+//g++ -Wall -Wextra -O3 src/jc_main.cpp src/jc_CAN_socket.cpp src/jc_text_printing.cpp src/jc_decoded_frame.cpp src/jc_logger.cpp src/jc_13c_frame.cpp src/jc_158_frame.cpp src/jc_17c_frame.cpp src/jc_1a4_frame.cpp src/jc_1a6_frame.cpp src/jc_1d0_frame.cpp src/jc_1dc_frame.cpp src/jc_320_frame.cpp src/jc_324_frame.cpp src/jc_377_frame.cpp src/jc_378_frame.cpp -lncurses
 
 int main(void)
 {
@@ -35,7 +35,7 @@ int main(void)
 
 	// Set up socket and CAN frame
 	CAN_socket sock;
-	struct can_frame frame;
+	struct can_frame raw_frame;
 
 	// Set up CAN message classes
 	Decoded_frame decoded_frame;
@@ -65,7 +65,7 @@ int main(void)
 		while (!quit_var)
 		{
 			// Read in a frame and send it for processing
-			frame = sock.read_frame(frame);
+			raw_frame = sock.read_frame(raw_frame);
 			decoded_frame.new_frame(frame);
 
 			// Print out the results
