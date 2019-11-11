@@ -92,6 +92,11 @@ void print_dash_titles_text(void)
     mvprintw(row++, TITLE_COLM, "Water Temp (C):");
     mvprintw(row++, TITLE_COLM, "Intake Temp (C):");
     row++;
+
+    mvprintw(row++, TITLE_COLM, "--Frame 377 & 378--");
+    mvprintw(row++, TITLE_COLM, "Fuel Economy (mpg):");
+    mvprintw(row++, TITLE_COLM, "Fuel Tank (gals):");
+    row++;
 }
 
 // Print the text based data
@@ -187,6 +192,14 @@ void print_dash_data_text(Decoded_frame & decoded_frame, Logger & data_log)
     mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_324.get_water_temp());
     clrtoeol();
     mvprintw(row++, DATA_COLM, "%.1f", decoded_frame.frame_324.get_intake_temp());
+    clrtoeol();
+    row++;
+
+    // Frame 377 & 378 //
+    row++;
+    mvprintw(row++, DATA_COLM + 2, "%.1f", decoded_frame.frame_377.get_fuel_consumption_gauge());
+    clrtoeol();
+    mvprintw(row++, DATA_COLM + 2, "%.1f", decoded_frame.frame_378.get_fuel_tank_level());
     clrtoeol();
     row++;
 }

@@ -27,6 +27,8 @@ Decoded_frame::Decoded_frame()
 
 	frame_IDs.push_back(frame_320.get_class_ID());
 	frame_IDs.push_back(frame_324.get_class_ID());
+	frame_IDs.push_back(frame_377.get_class_ID());
+	frame_IDs.push_back(frame_378.get_class_ID());
 }
 
 
@@ -70,6 +72,12 @@ void Decoded_frame::new_frame(struct can_frame & new_frame)
 
 		else if (new_frame.can_id == frame_324.get_class_ID())
 			frame_324.convert_frame(new_frame);
+
+		else if (new_frame.can_id == frame_377.get_class_ID())
+			frame_377.convert_frame(new_frame);
+
+		else if (new_frame.can_id == frame_378.get_class_ID())
+			frame_378.convert_frame(new_frame);
 	}
 
 	// Update time

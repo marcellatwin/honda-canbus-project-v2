@@ -28,6 +28,8 @@
 
 #include "jc_320_frame.h"
 #include "jc_324_frame.h"
+#include "jc_377_frame.h"
+#include "jc_378_frame.h"
 
 // Namespace for vector
 using namespace std;
@@ -49,6 +51,8 @@ public:
 
 	CAN_frame_320 frame_320;
 	CAN_frame_324 frame_324;
+	CAN_frame_377 frame_377;
+	CAN_frame_378 frame_378;
 
 	Decoded_frame();
     void new_frame(struct can_frame &);

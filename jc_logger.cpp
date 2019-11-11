@@ -59,7 +59,8 @@ void Logger::log_titles(void)
 			"speed_1" << "," <<
 			"water_temp" << "," <<
 			"intake_temp" << "," <<
-			"AC";
+			"AC" << "," <<
+			"fuel_consumption_gauge";
 		csv_log << endl;
 	}
 	else
@@ -77,7 +78,8 @@ void Logger::log_current(Decoded_frame & decoded_frame, CAN_socket & sock)
 	csv_log << decoded_frame.frame_158.get_speed_1() << ",";
 	csv_log << decoded_frame.frame_324.get_water_temp() << ",";
 	csv_log << decoded_frame.frame_324.get_intake_temp() << ",";
-	csv_log << decoded_frame.frame_1a6.get_ac_compressor_status();
+	csv_log << decoded_frame.frame_1a6.get_ac_compressor_status() << ",";
+	csv_log << decoded_frame.frame_377.get_fuel_consumption_gauge() << ",";
 
 	csv_log << endl;
 }
