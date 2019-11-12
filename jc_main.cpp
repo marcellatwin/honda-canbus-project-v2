@@ -56,6 +56,10 @@ int main(void)
 	Logger data_log;
 	data_log.log_titles();
 
+	// Made just for C++ class project
+	try
+	{
+
 	if (!sock.socket_error() && !data_log.logger_error())
 	{
 		// Start up ncurses window
@@ -90,7 +94,12 @@ int main(void)
 			// Determind wheather to keep running by way of user input or
 			// an error with reading the CAN bus
 			if (getch() == 'q' || sock.socket_error() || data_log.logger_error())
+			{
 				quit_var = true;
+
+				// Made just for C++ class project
+				throw quit_var
+			}
 			// WRITE TO ERROR LOG - time of ending!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 
@@ -99,6 +108,19 @@ int main(void)
 	}
 	else
 		cout << "Socket or logger not set up correctly." << endl;
+	}
+
+	// Made just for C++ class project
+	catch (bool temp)
+	{
+		// Shut down ncurses window
+		end_text_dash();
+		cout << "Socket error, Logger error, or 'q' pressed" << endl;
+	}
+
+	// Made just for C++ class project
+	cout << "Total run time (s):  ";
+	cout << CAN_socket << endl << endl;
 
 	return 0;
 }
