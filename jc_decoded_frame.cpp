@@ -39,18 +39,15 @@ void Decoded_frame::new_frame(struct can_frame & new_frame)
 	//delta_time = new_time - old_time;
 
 	// Compare ID vector to each CAN frame ID
-	for (unsigned int i = 0; i < frame_IDs.size(); i++)
-	//for (int i = 0; i < array_size; i++)
-	{
-		//if (new_frame.can_id == frame_13c.get_class_ID())
+	//for (unsigned int i = 0; i < frame_IDs.size(); i++)
+	//{
+		//if (frame_IDs[i] == frame_13c.get_class_ID())
 		if (new_frame.can_id == frame_13c.get_class_ID())
 			frame_13c.convert_frame(new_frame);
 
-		//else if (new_frame.can_id == frame_158.get_class_ID())
 		else if (new_frame.can_id == frame_158.get_class_ID())
 			frame_158.convert_frame(new_frame);
 
-		//else if (new_frame.can_id == frame_17c.get_class_ID())
 		else if (new_frame.can_id == frame_17c.get_class_ID())
 			frame_17c.convert_frame(new_frame);
 
@@ -78,7 +75,7 @@ void Decoded_frame::new_frame(struct can_frame & new_frame)
 
 		else if (new_frame.can_id == frame_378.get_class_ID())
 			frame_378.convert_frame(new_frame);
-	}
+	//}
 
 	// Update time
 	//old_time = new_time;
