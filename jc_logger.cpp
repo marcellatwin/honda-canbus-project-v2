@@ -44,7 +44,7 @@ Logger::Logger()
 Logger::~Logger()
 {
 	csv_log.close();
-	cout << endl << "Destructor, closing " << file_location + file_name.str() << ", ending program!" << endl;
+	cout << endl << "Destructor, closing " << file_name.str() << endl;
 }
 
 void Logger::log_titles(void)

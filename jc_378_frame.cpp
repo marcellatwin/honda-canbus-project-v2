@@ -23,7 +23,7 @@ CAN_frame_378::CAN_frame_378()
 void CAN_frame_378::convert_frame(struct can_frame & frame)
 {
 	//// CHECK SCALING/////////////////////////////////////////////////////
-	fuel_tank_level =  ((frame.data[4] << 8) + frame.data[5]) / 1000;
+	fuel_tank_level = ((frame.data[4] << 8) + frame.data[5]) / 1000;
 }
 
 canid_t CAN_frame_378::get_class_ID(void)
@@ -31,7 +31,7 @@ canid_t CAN_frame_378::get_class_ID(void)
 	return frame_id;
 }
 
-float CAN_frame_378::get_vtec_status(void)
+float CAN_frame_378::get_fuel_tank_level(void)
 {
 	return fuel_tank_level;
 }

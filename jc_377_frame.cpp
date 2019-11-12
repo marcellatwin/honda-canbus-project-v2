@@ -31,7 +31,7 @@ canid_t CAN_frame_377::get_class_ID(void)
 	return frame_id;
 }
 
-float CAN_frame_377::get_vtec_status(void)
+float CAN_frame_377::get_fuel_consumption_gauge(void)
 {
 	return fuel_consumption_gauge;
 }

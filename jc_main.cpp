@@ -66,7 +66,7 @@ int main(void)
 		{
 			// Read in a frame and send it for processing
 			raw_frame = sock.read_frame(raw_frame);
-			decoded_frame.new_frame(frame);
+			decoded_frame.new_frame(raw_frame);
 
 			// Print out the results
 			print_dash_data_text(decoded_frame, data_log);
