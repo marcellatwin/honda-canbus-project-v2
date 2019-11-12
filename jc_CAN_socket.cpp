@@ -58,13 +58,24 @@ CAN_socket::CAN_socket()
 			}
 		}
 	}
+
+	// Get starting time
+	start_time = get_timestamp();
 }
 
 // Destructor that will close the file descriptor for the socket
 CAN_socket::~CAN_socket()
 {
 	close(s);
-	cout << endl << "Destructor, closing s, ending program!" << endl;
+	cout << endl << "Destructor, closing s, ending program!" << endl << endl;
+}
+
+// Insertion operator overloading for C++ class project
+ostream &operator<<(ostream &output, CAN_socket &sock)
+{ 
+	sock.end_time = sock.get_timestamp();
+	output << (sock.end_time - sock.start_time);
+	return output;
 }
 
 // Returns the state of the error variable

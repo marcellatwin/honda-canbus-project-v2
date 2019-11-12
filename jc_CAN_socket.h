@@ -34,10 +34,16 @@ private:
 	struct sockaddr_can addr;
 	struct ifreq ifr;
 	struct timeval time_stamp;
+	struct timeval start_time;
+	struct timeval end_time;
 
 public:
 	CAN_socket();
 	~CAN_socket();
+	
+	// Insertion operator overloading for C++ class project
+	friend ostream &operator<<(ostream &, CAN_socket &);
+
 	bool socket_error(void);
 	struct can_frame read_frame(struct can_frame &);
 	struct timeval get_timestamp(void);
