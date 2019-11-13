@@ -26,6 +26,8 @@
 #include <linux/can.h>
 #include <linux/can/raw.h>
 
+using namespace std;
+
 class CAN_socket
 {
 private:

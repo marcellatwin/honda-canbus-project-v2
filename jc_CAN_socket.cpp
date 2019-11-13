@@ -71,10 +71,10 @@ CAN_socket::~CAN_socket()
 }
 
 // Insertion operator overloading for C++ class project
-ostream &operator<<(ostream &output, CAN_socket &sock)
+ostream& operator<<(ostream &output, CAN_socket &sock)
 { 
 	sock.end_time = sock.get_timestamp();
-	output << (sock.end_time - sock.start_time);
+	output << (sock.end_time.tv_sec - sock.start_time.tv_sec);
 	return output;
 }
 

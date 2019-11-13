@@ -98,7 +98,7 @@ int main(void)
 				quit_var = true;
 
 				// Made just for C++ class project
-				throw quit_var
+				throw quit_var;
 			}
 			// WRITE TO ERROR LOG - time of ending!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
@@ -120,7 +120,7 @@ int main(void)
 
 	// Made just for C++ class project
 	cout << "Total run time (s):  ";
-	cout << CAN_socket << endl << endl;
+	cout << sock << endl << endl;
 
 	return 0;
 }
