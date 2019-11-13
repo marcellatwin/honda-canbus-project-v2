@@ -36,8 +36,12 @@ private:
 	struct sockaddr_can addr;
 	struct ifreq ifr;
 	struct timeval time_stamp;
-	struct timeval start_time;
-	struct timeval end_time;
+	//struct timeval start_time;
+	//struct timeval end_time;
+
+	struct tm start_time;
+	struct tm end_time;
+	time_t current_time;
 
 public:
 	CAN_socket();

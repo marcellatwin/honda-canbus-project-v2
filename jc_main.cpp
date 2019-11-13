@@ -56,58 +56,62 @@ int main(void)
 	Logger data_log;
 	data_log.log_titles();
 
+	// Testing/////////////////////////////////////////////
+	//cout << "socket: " << sock.socket_error() << endl;
+	//cout << "logger: " << data_log.logger_error() << endl;
+
 	// Made just for C++ class project
 	try
 	{
 
-	if (!sock.socket_error() && !data_log.logger_error())
-	{
-		// Start up ncurses window
-		start_text_dash();
-		print_dash_titles_text();
-
-		while (!quit_var)
+		if (!sock.socket_error() && !data_log.logger_error())
 		{
-			// Read in a frame and send it for processing
-			raw_frame = sock.read_frame(raw_frame);
-			decoded_frame.new_frame(raw_frame);
+			// Start up ncurses window
+			start_text_dash();
+			print_dash_titles_text();
 
-			// Print out the results
-			print_dash_data_text(decoded_frame, data_log);
-			//output.update() - FOR LATER
-
-			// Determind when to log data
-			if (getch() == 'l')
-				data_log.log_start_stop();
-			
-
-			if (data_log.get_log_status())
+			while (!quit_var)
 			{
-				// Increment loop counter
-				loop_counter++;
+				// Read in a frame and send it for processing
+				raw_frame = sock.read_frame(raw_frame);
+				decoded_frame.new_frame(raw_frame);
 
-				if ((loop_counter % 100) == 0)
-					data_log.log_current(decoded_frame, sock);
+				// Print out the results
+				print_dash_data_text(decoded_frame, data_log);
+				//output.update() - FOR LATER
+
+				// Determind when to log data
+				if (getch() == 'l')
+					data_log.log_start_stop();
+				
+
+				if (data_log.get_log_status())
+				{
+					// Increment loop counter
+					loop_counter++;
+
+					if ((loop_counter % 100) == 0)
+						data_log.log_current(decoded_frame, sock);
+				}
+
+				// For NOW /////////////////////////////////////////
+				// Determind wheather to keep running by way of user input or
+				// an error with reading the CAN bus
+				if (getch() == 'q' || sock.socket_error() || data_log.logger_error())
+				{
+					quit_var = true;
+
+					// Made just for C++ class project
+					throw quit_var;
+				}
+				// WRITE TO ERROR LOG - time of ending!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			}
 
-			// For NOW /////////////////////////////////////////
-			// Determind wheather to keep running by way of user input or
-			// an error with reading the CAN bus
-			if (getch() == 'q' || sock.socket_error() || data_log.logger_error())
-			{
-				quit_var = true;
-
-				// Made just for C++ class project
-				throw quit_var;
-			}
-			// WRITE TO ERROR LOG - time of ending!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// Shut down ncurses window
+			end_text_dash();
 		}
-
-		// Shut down ncurses window
-		end_text_dash();
-	}
-	else
-		cout << "Socket or logger not set up correctly." << endl;
+		else
+			cout << "Socket or logger not set up correctly." << endl;
 	}
 
 	// Made just for C++ class project
@@ -115,12 +119,12 @@ int main(void)
 	{
 		// Shut down ncurses window
 		end_text_dash();
-		cout << "Socket error, Logger error, or 'q' pressed" << endl;
+		cout << endl << "Socket error, Logger error, or 'q' pressed" << endl;
 	}
 
 	// Made just for C++ class project
-	cout << "Total run time (s):  ";
-	cout << sock << endl << endl;
+	cout << endl << "Total run time:  ";
+	cout << sock << endl;
 
 	return 0;
 }

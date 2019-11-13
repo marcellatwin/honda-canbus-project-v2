@@ -22,6 +22,7 @@ CAN_socket::CAN_socket()
 
 	// Set the file descriptor for the socket
 	s = socket(PF_CAN, SOCK_RAW, CAN_RAW);
+
 	if (s == -1)
 	{
 		perror("Error with setting up socket file descriptor: ");
@@ -51,7 +52,7 @@ CAN_socket::CAN_socket()
 			//fcntl(s, F_SETFL, O_NONBLOCK);
 
 			// Bind the socket and address
-			if (bind(s, (struct sockaddr*) &addr, sizeof(addr)) < 0)
+			if (bind(s, (struct sockaddr*) &addr, sizeof(addr)) == -1)
 			{
 				perror("Error with binding socket address: ");
 				sock_error = true;
@@ -60,7 +61,9 @@ CAN_socket::CAN_socket()
 	}
 
 	// Get starting time
-	start_time = get_timestamp();
+	//start_time = get_timestamp();
+	time(&current_time);
+	localtime_r(&current_time, &start_time);
 }
 
 // Destructor that will close the file descriptor for the socket
@@ -73,8 +76,12 @@ CAN_socket::~CAN_socket()
 // Insertion operator overloading for C++ class project
 ostream& operator<<(ostream &output, CAN_socket &sock)
 { 
-	sock.end_time = sock.get_timestamp();
-	output << (sock.end_time.tv_sec - sock.start_time.tv_sec);
+	//sock.end_time = sock.get_timestamp();
+	time(&sock.current_time);
+	localtime_r(&sock.current_time, &sock.end_time);
+	output << "Hours: " << (sock.end_time.tm_hour - sock.start_time.tm_hour)
+		<< "  Minutes: " << (sock.end_time.tm_min - sock.start_time.tm_min)
+		<< "  Seconds: " << (sock.end_time.tm_sec - sock.start_time.tm_sec);
 	return output;
 }
 
@@ -100,8 +107,12 @@ struct can_frame CAN_socket::read_frame(struct can_frame &frame)
 // Get the current timestamp from socket
 struct timeval CAN_socket::get_timestamp(void)
 {
-	int temp_error = ioctl(s, SIOCGSTAMP, &time_stamp);
-	if (temp_error == -1)
+	//int temp_error = ioctl(s, SIOCGSTAMP, &time_stamp);
+	//cout << "ioctl time error: " << temp_error;
+	if (ioctl(s, SIOCGSTAMP, &time_stamp) == -1)
+	{	
 		sock_error = true;
+		perror("time stamp error");
+	}
 	return time_stamp;
 }
