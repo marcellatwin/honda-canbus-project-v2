@@ -111,7 +111,7 @@ int main(void)
 	}
 
 	// Made just for C++ class project
-	catch (bool temp)
+	catch (bool quit_var)
 	{
 		// Shut down ncurses window
 		end_text_dash();
